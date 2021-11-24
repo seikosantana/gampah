@@ -1,7 +1,7 @@
 # Gampah
-<div style="text-align: center">
+<p align="center">
     <img src=https://raw.githubusercontent.com/seikosantana/gampah/master/Gampah%20Logo.png>
-</div>
+</p>
 
 Sampah? Gampang!
 
