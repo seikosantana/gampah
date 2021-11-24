@@ -1,16 +1,17 @@
-# gampah_app
+# Gampah
+![image](https://raw.githubusercontent.com/seikosantana/gampah/master/Gampah%20Logo.png)
 
-A new Flutter project.
 
-## Getting Started
+Sampah? Gampang!
 
-This project is a starting point for a Flutter application.
+## Apa itu Gampah?
 
-A few resources to get you started if this is your first Flutter project:
+Gampah adalah aplikasi digititalisasi pelaporan sampah sembarangan berbasis Android. Gampah membuat gerakan untuk mengumpulkan informasi titik-titik penumpakan sampah di daerah yang kurang diperhatikan dan mengadakan penjemputan dengan sistematis.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Repository ini berisikan _source code_ dari front-end aplikasi Gampah yang dibangun menggunakan Google Flutter.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Backend
+Backend sistem Gampah berbasis HTTP dan dibangun menggunakan framework Laravel. Source code backend ada pada link [berikut](https://github.com/Bintaaaa/Gampah-Backend).
+
+### Credits
+_Menyusul kemudian.._
