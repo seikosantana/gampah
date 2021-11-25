@@ -6,7 +6,7 @@ import 'package:gampah_app/ui/widgets/btn_next_get_started.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({Key? key}) : super(key: key);
-
+  static const routeName = "/get_started";
   Widget _btnNext() {
     return BtnNext();
   }

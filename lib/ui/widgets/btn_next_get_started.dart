@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
+import 'package:gampah_app/ui/pages/page_home.dart';
 
 class BtnNext extends StatelessWidget {
   const BtnNext({Key? key}) : super(key: key);
@@ -7,7 +8,9 @@ class BtnNext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacementNamed(context, HomePage.routeName);
+      },
       child: Container(
         height: 45,
         width: 45,
