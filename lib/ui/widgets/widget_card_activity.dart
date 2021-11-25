@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:gampah_app/style/color.dart';
+import 'package:gampah_app/style/text_theme.dart';
+
+class CardActivity extends StatelessWidget {
+  final String skala;
+  final String title;
+  const CardActivity({Key? key, required this.skala, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.4,
+      margin: EdgeInsets.only(right: 8),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: darkGreenColor, width: 2),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 70,
+                height: 70,
+                margin: EdgeInsets.only(bottom: 16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: darkGreenColor),
+                child: Center(
+                  child: Text(
+                    skala,
+                    style: myTexTheme.subtitle1!.copyWith(
+                      color: whiteColor,
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                title,
+                style: myTexTheme.bodyText1,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
