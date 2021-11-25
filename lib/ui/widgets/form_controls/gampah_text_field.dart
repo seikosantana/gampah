@@ -21,7 +21,7 @@ class _GampahTextFieldState extends State<GampahTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.zero,
       child: Column(
         children: [
           if (widget.labelText != null)
