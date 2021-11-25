@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class GampahTextField extends StatefulWidget {
-  const GampahTextField({Key? key}) : super(key: key);
+  String? labelText;
+  Icon? preIcon;
+  Widget? postWidget;
+  bool? maskText;
+
+  GampahTextField(
+      {this.labelText, this.preIcon, this.postWidget, this.maskText, Key? key})
+      : super(key: key);
 
   @override
   _GampahTextFieldState createState() {
@@ -14,7 +22,49 @@ class _GampahTextFieldState extends State<GampahTextField> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
-      child: TextFormField(),
+      child: Column(
+        children: [
+          if (widget.labelText != null)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Text(widget.labelText!)],
+            ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            child: Row(
+              children: [
+                if (widget.preIcon != null)
+                  Container(
+                    padding: EdgeInsets.only(right: 14),
+                    child: widget.preIcon,
+                  ),
+                Expanded(
+                  child: TextFormField(
+                    obscureText: widget.maskText ?? false,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                if (widget.postWidget != null)
+                  Container(
+                    padding: EdgeInsets.only(left: 16),
+                    child: widget.postWidget,
+                  )
+              ],
+            ),
+            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              color: Color(0xEFEFEFFF),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
