@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
+import 'package:gampah_app/ui/pages/page_transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         GetStartedPage.routeName: (context) => GetStartedPage(),
         HomePage.routeName: (context) => HomePage(),
+        TransactionPage.routeName: (context) => TransactionPage()
       },
     );
   }
