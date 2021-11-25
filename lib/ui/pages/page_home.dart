@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/widgets/widget_card_about.dart';
 import 'package:gampah_app/ui/widgets/widget_card_activity.dart';
 import 'package:gampah_app/ui/widgets/widget_clip_path.dart';
 
@@ -83,18 +85,60 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget _aboutGampah(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Kenali Gampah Lebih Dekat",
+            style: myTexTheme.headline6,
+          ),
+          Text(
+            "Biar kita makin akrab",
+            style: myTexTheme.subtitle2,
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                CardAbout(
+                    picture: "assets/home_about1.png",
+                    title: "Apa itu\nGampah"),
+                CardAbout(
+                    picture: "assets/home_about2.png",
+                    title: "Cara\nPakai Gampah"),
+                CardAbout(
+                    picture: "assets/home_about3.png",
+                    title: "Sudah\nMengertikan\nCara Pakai\nGampah?"),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [_clipPath(context), _header(), _titleActivity()],
-            ),
-            _cardActivity(context)
-          ],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [_clipPath(context), _header(), _titleActivity()],
+              ),
+              _cardActivity(context),
+              _aboutGampah(context)
+            ],
+          ),
         ),
       ),
     );
