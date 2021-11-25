@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/widgets/widget_card_about.dart';
 import 'package:gampah_app/ui/widgets/widget_card_activity.dart';
@@ -128,8 +129,12 @@ class _HomePageState extends State<HomePage> {
                   width: 24,
                 ),
                 CardAbout(
-                    picture: "assets/home_about1.png",
-                    title: "Apa itu\nGampah"),
+                  picture: "assets/home_about1.png",
+                  title: "Apa itu\nGampah",
+                  onTap: () {
+                    Navigator.pushNamed(context, AboutPage.routeName);
+                  },
+                ),
                 CardAbout(
                     picture: "assets/home_about2.png",
                     title: "Cara\nPakai Gampah"),
