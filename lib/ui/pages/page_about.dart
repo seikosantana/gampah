@@ -23,7 +23,7 @@ class AboutPage extends StatelessWidget {
             image: "assets/about_2.svg"),
         CardItemAbout(
             title: "Yuk Buang sampah\ndengan Gampah",
-            description: "Pokonya ada sampahlangsung\nGampah-in",
+            description: "Pokonya ada sampah langsung\nGampah-in",
             image: "assets/about_1.svg")
       ],
     );

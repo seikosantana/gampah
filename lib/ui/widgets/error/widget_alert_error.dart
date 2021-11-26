@@ -11,38 +11,45 @@ class AlertError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Lottie.asset(lottie),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: myTexTheme.headline6,
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          TextButton(
+    return Container(
+      margin: EdgeInsets.all(24),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(lottie),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: myTexTheme.headline6,
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Wrap(
-                children: [
-                  Icon(
-                    Icons.keyboard_backspace,
-                    color: darkGreenColor,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "Kembali",
-                    style: myTexTheme.subtitle1,
-                  ),
-                ],
-              )),
-        ],
+              child: Center(
+                child: Wrap(
+                  children: [
+                    Icon(
+                      Icons.keyboard_backspace,
+                      color: darkGreenColor,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      "Kembali",
+                      style: myTexTheme.subtitle1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

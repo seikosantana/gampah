@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
+import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         TransactionPage.routeName: (context) => TransactionPage(),
         AboutPage.routeName: (context) => AboutPage(),
         TutorialPage.routeName: (context) => TutorialPage(),
-        ErrorPage.routeName: (context) => ErrorPage()
+        ErrorPage.routeName: (context) => ErrorPage(),
+        ErrorGpsPage.routeName: (context) => ErrorGpsPage(),
       },
     );
   }
