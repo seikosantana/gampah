@@ -16,15 +16,14 @@ class CardItemAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24),
+      margin: EdgeInsets.fromLTRB(24, 0, 24, 16),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.427,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
           child: Center(
             child: Column(
               children: [
