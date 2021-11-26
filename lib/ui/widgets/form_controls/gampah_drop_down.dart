@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class GampahTextField extends StatefulWidget {
+class GampahDropDown<T> extends StatefulWidget {
   String? labelText;
   Widget? prefix;
   Widget? postAction;
-  bool? maskText;
+  List<DropdownMenuItem<T>> items;
+  void Function(T?)? onChanged;
+  dynamic value;
 
-  GampahTextField(
-      {this.labelText, this.prefix, this.postAction, this.maskText, Key? key})
+  GampahDropDown(
+      {this.labelText,
+      this.prefix,
+      this.postAction,
+      required this.items,
+      this.onChanged,
+      this.value,
+      Key? key})
       : super(key: key);
 
   @override
-  _GampahTextFieldState createState() {
-    return _GampahTextFieldState();
+  _GampahDropDownState createState() {
+    return _GampahDropDownState<T>();
   }
 }
 
-class _GampahTextFieldState extends State<GampahTextField> {
+class _GampahDropDownState<T> extends State<GampahDropDown<T>> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,8 +49,10 @@ class _GampahTextFieldState extends State<GampahTextField> {
                     child: widget.prefix,
                   ),
                 Expanded(
-                  child: TextFormField(
-                    obscureText: widget.maskText ?? false,
+                  child: DropdownButtonFormField<T>(
+                    items: widget.items,
+                    value: widget.value,
+                    onChanged: widget.onChanged,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                     ),
