@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gampah_app/style/color.dart';
-import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/widgets/widget_card_tutorial.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 
@@ -29,6 +27,9 @@ class TutorialPage extends StatelessWidget {
             title:
                 "Tinggal tunggu umpan balik dari kami,\nlihat di halaman Transaksi.",
             image: "assets/tutorial_3.png"),
+        SizedBox(
+          height: 24,
+        ),
       ],
     );
   }

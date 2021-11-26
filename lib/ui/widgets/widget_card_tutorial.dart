@@ -22,6 +22,14 @@ class CardTutorial extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: whiteColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
         image: DecorationImage(
           image: AssetImage(image),
           fit: BoxFit.cover,
