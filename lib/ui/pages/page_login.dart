@@ -45,7 +45,7 @@ class LoginPageState extends State<LoginPage> {
           ),
           GampahTextField(
             labelText: "Kata sandi",
-            preIcon: Icon(Icons.lock),
+            prefix: Icon(Icons.lock),
             postAction: IconButton(
               icon: Icon(Icons.visibility_off),
               onPressed: () {},

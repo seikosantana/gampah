@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 
 class GampahTextField extends StatefulWidget {
   String? labelText;
-  Icon? preIcon;
+  Widget? prefix;
   Widget? postAction;
   bool? maskText;
 
   GampahTextField(
-      {this.labelText, this.preIcon, this.postAction, this.maskText, Key? key})
+      {this.labelText, this.prefix, this.postAction, this.maskText, Key? key})
       : super(key: key);
 
   @override
@@ -35,10 +35,10 @@ class _GampahTextFieldState extends State<GampahTextField> {
           Container(
             child: Row(
               children: [
-                if (widget.preIcon != null)
+                if (widget.prefix != null)
                   Container(
                     padding: EdgeInsets.only(right: 14),
-                    child: widget.preIcon,
+                    child: widget.prefix,
                   ),
                 Expanded(
                   child: TextFormField(
