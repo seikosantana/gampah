@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
+import 'package:gampah_app/ui/pages/page_splash.dart';
 import 'package:gampah_app/ui/pages/page_test_widget.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
@@ -18,12 +20,15 @@ class MyApp extends StatelessWidget {
       title: "Gampah",
       theme: ThemeData(textTheme: myTexTheme),
       home: GetStartedPage(),
+      initialRoute: SplashPage.routeName,
       routes: {
+        SplashPage.routeName: (context) => SplashPage(),
         GetStartedPage.routeName: (context) => GetStartedPage(),
         HomePage.routeName: (context) => HomePage(),
         TransactionPage.routeName: (context) => TransactionPage(),
         AboutPage.routeName: (context) => AboutPage(),
-        TutorialPage.routeName: (context) => TutorialPage()
+        TutorialPage.routeName: (context) => TutorialPage(),
+        ErrorPage.routeName: (context) => ErrorPage()
       },
     );
   }
