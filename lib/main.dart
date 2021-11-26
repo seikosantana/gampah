@@ -5,6 +5,7 @@ import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_test_widget.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
+import 'package:gampah_app/ui/pages/page_tutorial.dart';
 
 void main() => runApp(TestPage());
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => HomePage(),
         TransactionPage.routeName: (context) => TransactionPage(),
         AboutPage.routeName: (context) => AboutPage(),
+        TutorialPage.routeName: (context) => TutorialPage()
       },
     );
   }
