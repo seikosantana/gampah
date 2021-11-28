@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/helper_functions.dart/geolocation.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/error/error.dart';
+import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 class TransactionDetailPage extends StatefulWidget {
   static const routeName = "/detail_transaction";
@@ -16,7 +21,19 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          Position? currentPosition =
+              await determinePosition(locationNotEnabledCallback: () {
+            Navigator.pushNamed(context, ErrorGpsPage.routeName);
+          }, permissionDeniedCallback: () {
+            Navigator.pushNamed(context, ErrorPage.routeName);
+          });
+          if (currentPosition != null) {
+            MapsLauncher.launchCoordinates(
+                currentPosition.latitude, currentPosition.longitude);
+            print(currentPosition);
+          }
+        },
         backgroundColor: darkGreenColor,
         child: Icon(Icons.location_on),
       ),
