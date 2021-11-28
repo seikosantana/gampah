@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
+import 'package:gampah_app/ui/pages/page_login.dart';
 
 class BtnNext extends StatefulWidget {
   const BtnNext({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _BtnNextState extends State<BtnNext> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushReplacementNamed(context, HomePage.routeName);
+        Navigator.pushReplacementNamed(context, LoginPage.routeName);
         setState(() {
           isTap = !isTap;
         });

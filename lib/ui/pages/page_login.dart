@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
+import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_register.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 
@@ -62,9 +63,7 @@ class LoginPageState extends State<LoginPage> {
                     Icons.visibility_off,
                     color: softGreyColor,
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, GetStartedPage.routeName);
-                  },
+                  onPressed: () {},
                 ),
               ),
               SizedBox(
@@ -75,7 +74,10 @@ class LoginPageState extends State<LoginPage> {
                   Expanded(
                     child: ElevatedButton(
                       // TODO: Replace with Gampah-themed button
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, HomePage.routeName);
+                      },
                       child: Text(
                         "Masuk",
                         style: myTexTheme.button,

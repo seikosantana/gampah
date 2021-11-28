@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/pages/page_transaction.dart';
+import 'package:gampah_app/ui/pages/page_transaction_detail.dart';
 
 class CardTransaction extends StatelessWidget {
   final String date;
@@ -22,7 +24,9 @@ class CardTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        Navigator.pushNamed(context, TransactionDetailPage.routeName);
+      },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 24, vertical: 2),
         width: MediaQuery.of(context).size.width,

@@ -4,6 +4,7 @@ import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 
 class TransactionDetailPage extends StatefulWidget {
+  static const routeName = "/detail_transaction";
   @override
   State<StatefulWidget> createState() {
     return _TransactionDetailPageState();
@@ -107,7 +108,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         onTap: () {},
                         child: Container(
                           height: 200,
-                          color: softWhiteColor,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: softWhiteColor,
+                          ),
                           child: Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +147,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         onTap: () {},
                         child: Container(
                           height: 200,
-                          color: softWhiteColor,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: softWhiteColor,
+                          ),
+                          width: MediaQuery.of(context).size.width,
                           child: Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -177,7 +186,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         onTap: () {},
                         child: Container(
                           height: 200,
-                          color: softWhiteColor,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: softWhiteColor,
+                          ),
                           child: Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

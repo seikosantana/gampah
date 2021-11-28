@@ -10,6 +10,7 @@ import 'package:gampah_app/ui/pages/page_register.dart';
 import 'package:gampah_app/ui/pages/page_splash.dart';
 import 'package:gampah_app/ui/pages/page_test_widget.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
+import 'package:gampah_app/ui/pages/page_transaction_detail.dart';
 import 'package:gampah_app/ui/pages/page_transaction_register.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         RegisterPage.routeName: (context) => RegisterPage(),
         RegisterTransaction.routeName: (context) => RegisterTransaction(),
         TransactionPage.routeName: (context) => TransactionPage(),
+        TransactionDetailPage.routeName: (context) => TransactionDetailPage(),
         AboutPage.routeName: (context) => AboutPage(),
         TutorialPage.routeName: (context) => TutorialPage(),
         ErrorPage.routeName: (context) => ErrorPage(),
