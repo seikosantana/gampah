@@ -6,6 +6,7 @@ import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
+import 'package:gampah_app/ui/pages/page_profile.dart';
 import 'package:gampah_app/ui/pages/page_register.dart';
 import 'package:gampah_app/ui/pages/page_splash.dart';
 import 'package:gampah_app/ui/pages/page_test_widget.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         TutorialPage.routeName: (context) => TutorialPage(),
         ErrorPage.routeName: (context) => ErrorPage(),
         ErrorGpsPage.routeName: (context) => ErrorGpsPage(),
+        PageProfile.routeName: (context) => PageProfile(),
       },
     );
   }

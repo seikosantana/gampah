@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
+import 'package:gampah_app/ui/pages/page_profile.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/pages/page_transaction_register.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
@@ -51,18 +52,23 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: whiteColor,
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage("assets/image_profile.png"),
+          InkWell(
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: whiteColor,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage("assets/image_profile.png"),
+                ),
               ),
             ),
-          )
+            onTap: () {
+              Navigator.pushReplacementNamed(context, PageProfile.routeName);
+            },
+          ),
         ],
       ),
     );
