@@ -6,6 +6,7 @@ import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/helper_functions.dart/extensions.dart';
 
 class RegisterPage extends StatefulWidget {
+  static const routeName = "/register";
   @override
   RegisterPageState createState() {
     return RegisterPageState();

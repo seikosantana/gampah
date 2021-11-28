@@ -5,6 +5,8 @@ import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
+import 'package:gampah_app/ui/pages/page_login.dart';
+import 'package:gampah_app/ui/pages/page_register.dart';
 import 'package:gampah_app/ui/pages/page_splash.dart';
 import 'package:gampah_app/ui/pages/page_test_widget.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
         SplashPage.routeName: (context) => SplashPage(),
         GetStartedPage.routeName: (context) => GetStartedPage(),
         HomePage.routeName: (context) => HomePage(),
+        LoginPage.routeName: (context) => LoginPage(),
+        RegisterPage.routeName: (context) => RegisterPage(),
         RegisterTransaction.routeName: (context) => RegisterTransaction(),
         TransactionPage.routeName: (context) => TransactionPage(),
         AboutPage.routeName: (context) => AboutPage(),

@@ -41,9 +41,6 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
             height: 16,
           ),
           Text("Ambil Foto Sampah"),
-          SizedBox(
-            height: 8,
-          ),
           InkWell(
             onTap: () => pickImage(),
             child: image != null

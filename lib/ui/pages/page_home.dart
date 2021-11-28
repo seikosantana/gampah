@@ -3,6 +3,7 @@ import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
+import 'package:gampah_app/ui/pages/page_transaction_register.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
 import 'package:gampah_app/ui/widgets/widget_card_about.dart';
 import 'package:gampah_app/ui/widgets/widget_card_activity.dart';
@@ -196,7 +197,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget _floatingActionButton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, RegisterTransaction.routeName);
+      },
       child: Icon(Icons.center_focus_strong),
       backgroundColor: softBlueColor,
     );

@@ -7,6 +7,6 @@ Color softGreyColor = Color(0xFFAEAEAE);
 Color greyColor = Color(0xFF848484);
 Color darkGreyColor = Color(0xFF555555);
 Color whiteColor = Color(0xFFFFFFFF);
-Color softWhiteColor = Color(0xFFFEFEFE);
+Color softWhiteColor = Color(0xFFEFEFEF);
 Color yellowColor = Color(0xFFE5B874);
 Color redColor = Color(0xFFC25353);

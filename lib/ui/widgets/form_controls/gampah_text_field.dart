@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gampah_app/style/color.dart';
 
 class GampahTextField extends StatefulWidget {
   String? labelText;
@@ -60,7 +61,7 @@ class _GampahTextFieldState extends State<GampahTextField> {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              color: Color(0xEFEFEFFF),
+              color: softWhiteColor,
             ),
           )
         ],
