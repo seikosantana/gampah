@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/widgets/error/widget_alert_error.dart';
+import 'package:geolocator/geolocator.dart';
 
 class ErrorGpsPage extends StatelessWidget {
   const ErrorGpsPage({Key? key}) : super(key: key);
@@ -17,7 +18,9 @@ class ErrorGpsPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 24),
       height: 50,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Geolocator.openLocationSettings();
+        },
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(darkGreenColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
