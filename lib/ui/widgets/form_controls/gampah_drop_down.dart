@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gampah_app/style/color.dart';
 
 class GampahDropDown<T> extends StatefulWidget {
   String? labelText;
@@ -70,7 +71,7 @@ class _GampahDropDownState<T> extends State<GampahDropDown<T>> {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              color: Color(0xEFEFEFFF),
+              color: softWhiteColor,
             ),
           )
         ],

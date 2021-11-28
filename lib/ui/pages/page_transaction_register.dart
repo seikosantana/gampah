@@ -62,7 +62,7 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
                     margin: EdgeInsets.only(top: 16, bottom: 24),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: Color(0xEFEFEFFF),
+                      color: softWhiteColor,
                     ),
                     child: Center(
                       child: Icon(
