@@ -9,7 +9,7 @@ class CustomToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(24, 16, 24, 0),
+      margin: EdgeInsets.fromLTRB(14, 16, 24, 0),
       child: Row(
         children: [
           IconButton(

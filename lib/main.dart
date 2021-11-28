@@ -8,6 +8,7 @@ import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_splash.dart';
 import 'package:gampah_app/ui/pages/page_test_widget.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
+import 'package:gampah_app/ui/pages/page_transaction_register.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
 
 void main() => runApp(TestPage());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         SplashPage.routeName: (context) => SplashPage(),
         GetStartedPage.routeName: (context) => GetStartedPage(),
         HomePage.routeName: (context) => HomePage(),
+        RegisterTransaction.routeName: (context) => RegisterTransaction(),
         TransactionPage.routeName: (context) => TransactionPage(),
         AboutPage.routeName: (context) => AboutPage(),
         TutorialPage.routeName: (context) => TutorialPage(),

@@ -42,6 +42,9 @@ dependencies:
   splash_screen_view: ^3.0.0
   #lottie
   lottie: ^1.2.1
+  # getting image from camera or galleries
+  image_picker: ^0.8.3+1
+  
   
 dev_dependencies:
   flutter_test:
