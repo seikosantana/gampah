@@ -4,7 +4,9 @@ import 'package:gampah_app/style/text_theme.dart';
 
 class CustomToolbar extends StatelessWidget {
   final String title;
-  const CustomToolbar({Key? key, required this.title}) : super(key: key);
+  final bool? hasBack;
+  const CustomToolbar({Key? key, required this.title, this.hasBack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +14,16 @@ class CustomToolbar extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(14, 16, 24, 0),
       child: Row(
         children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.keyboard_backspace,
-              color: darkGreyColor,
+          if (hasBack ?? true)
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.keyboard_backspace,
+                color: darkGreyColor,
+              ),
             ),
-          ),
           SizedBox(
             width: 16,
           ),
