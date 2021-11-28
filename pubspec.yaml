@@ -44,6 +44,8 @@ dependencies:
   lottie: ^1.2.1
   # getting image from camera or galleries
   image_picker: ^0.8.3+1
+  geolocator: ^7.7.1
+  maps_launcher: ^2.0.1
   
   
 dev_dependencies:
