@@ -38,7 +38,7 @@ class CardTransaction extends StatelessWidget {
               children: [
                 Text(
                   date,
-                  style: myTexTheme.caption!.copyWith(color: softGreyColor),
+                  style: appTextTheme.caption!.copyWith(color: softGreyColor),
                 ),
                 Divider(
                   color: softGreyColor,
@@ -49,7 +49,7 @@ class CardTransaction extends StatelessWidget {
                     Expanded(
                       child: Text(
                         name,
-                        style: myTexTheme.bodyText2!
+                        style: appTextTheme.bodyText2!
                             .copyWith(color: darkGreyColor),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -64,7 +64,7 @@ class CardTransaction extends StatelessWidget {
                         child: Text(
                           status,
                           style:
-                              myTexTheme.caption!.copyWith(color: whiteColor),
+                              appTextTheme.caption!.copyWith(color: whiteColor),
                         ),
                       ),
                     ),

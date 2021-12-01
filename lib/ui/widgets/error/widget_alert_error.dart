@@ -21,7 +21,7 @@ class AlertError extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: myTexTheme.headline6,
+              style: appTextTheme.headline6,
             ),
             SizedBox(
               height: 24,
@@ -42,7 +42,7 @@ class AlertError extends StatelessWidget {
                     ),
                     Text(
                       "Kembali",
-                      style: myTexTheme.subtitle1,
+                      style: appTextTheme.subtitle1,
                     ),
                   ],
                 ),

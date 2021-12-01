@@ -32,7 +32,7 @@ class ErrorGpsPage extends StatelessWidget {
         child: Center(
           child: Text(
             "Buka pengaturan GPS",
-            style: myTexTheme.button,
+            style: appTextTheme.button,
           ),
         ),
       ),

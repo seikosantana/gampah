@@ -29,18 +29,18 @@ class LoginPageState extends State<LoginPage> {
             children: [
               Text(
                 "Masuk",
-                style: myTexTheme.headline5!.copyWith(),
+                style: appTextTheme.headline5!.copyWith(),
               ),
               SizedBox(
                 height: 20,
               ),
               Text(
                 "Selamat datang kembali",
-                style: myTexTheme.subtitle1,
+                style: appTextTheme.subtitle1,
               ),
               Text(
                 "Yuk hijaukan bumi",
-                style: myTexTheme.subtitle1,
+                style: appTextTheme.subtitle1,
               ),
               SizedBox(
                 height: 40,
@@ -80,7 +80,7 @@ class LoginPageState extends State<LoginPage> {
                       },
                       child: Text(
                         "Masuk",
-                        style: myTexTheme.button,
+                        style: appTextTheme.button,
                       ),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: 14),
@@ -99,14 +99,14 @@ class LoginPageState extends State<LoginPage> {
                 },
                 child: RichText(
                   text: TextSpan(
-                    style: myTexTheme.bodyText2,
+                    style: appTextTheme.bodyText2,
                     children: <TextSpan>[
                       TextSpan(
                         text: "Belum punya akun? ",
                       ),
                       TextSpan(
                         text: " Yuk daftar",
-                        style: myTexTheme.bodyText2!
+                        style: appTextTheme.bodyText2!
                             .copyWith(color: softBlueColor),
                       ),
                     ],

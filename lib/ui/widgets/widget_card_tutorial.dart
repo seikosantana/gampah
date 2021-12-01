@@ -51,7 +51,7 @@ class CardTutorial extends StatelessWidget {
               ),
               child: Center(
                 child: Text(number,
-                    style: myTexTheme.bodyText1!.copyWith(color: whiteColor)),
+                    style: appTextTheme.bodyText1!.copyWith(color: whiteColor)),
               ),
             ),
           ),
@@ -59,7 +59,7 @@ class CardTutorial extends StatelessWidget {
             margin: EdgeInsets.only(left: 56, top: 6),
             child: Text(
               title,
-              style: myTexTheme.bodyText2!.copyWith(color: darkGreyColor),
+              style: appTextTheme.bodyText2!.copyWith(color: darkGreyColor),
             ),
           )
         ],

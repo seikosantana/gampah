@@ -30,7 +30,7 @@ class CardItemAbout extends StatelessWidget {
                 Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: myTexTheme.subtitle1,
+                  style: appTextTheme.subtitle1,
                 ),
                 SizedBox(
                   height: 16,
@@ -41,7 +41,7 @@ class CardItemAbout extends StatelessWidget {
                 ),
                 Text(
                   description,
-                  style: myTexTheme.bodyText2,
+                  style: appTextTheme.bodyText2,
                   textAlign: TextAlign.center,
                 )
               ],

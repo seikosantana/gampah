@@ -29,7 +29,7 @@ class CustomToolbar extends StatelessWidget {
           ),
           Text(
             title,
-            style: myTexTheme.headline6,
+            style: appTextTheme.headline6,
           )
         ],
       ),

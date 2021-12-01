@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Gampah",
-      theme: ThemeData(textTheme: myTexTheme),
+      theme: ThemeData(textTheme: appTextTheme),
       home: GetStartedPage(),
       initialRoute: SplashPage.routeName,
       routes: {

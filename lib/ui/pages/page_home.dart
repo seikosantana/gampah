@@ -43,11 +43,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   "Hai, Bijantium",
-                  style: myTexTheme.headline5!.copyWith(color: whiteColor),
+                  style: appTextTheme.headline5!.copyWith(color: whiteColor),
                 ),
                 Text(
                   "Yuk Laporin Sampahnya",
-                  style: myTexTheme.subtitle1!.copyWith(color: whiteColor),
+                  style: appTextTheme.subtitle1!.copyWith(color: whiteColor),
                 ),
               ],
             ),
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       margin: EdgeInsets.only(left: 24, top: 165),
       child: Text(
         "Aktivitas Gampah",
-        style: myTexTheme.headline6,
+        style: appTextTheme.headline6,
       ),
     );
   }
@@ -108,11 +108,11 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             "Kenali Gampah Lebih Dekat",
-            style: myTexTheme.headline6,
+            style: appTextTheme.headline6,
           ),
           Text(
             "Biar kita makin akrab",
-            style: myTexTheme.subtitle2,
+            style: appTextTheme.subtitle2,
           ),
         ],
       ),

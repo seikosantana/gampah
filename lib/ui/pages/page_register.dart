@@ -29,14 +29,14 @@ class RegisterPageState extends State<RegisterPage> {
               children: [
                 Text(
                   "Daftar",
-                  style: myTexTheme.headline5,
+                  style: appTextTheme.headline5,
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
                   "Dengan mendaftar kamu bisa selamatkan beruang kutub",
-                  style: myTexTheme.subtitle1,
+                  style: appTextTheme.subtitle1,
                 ),
                 SizedBox(
                   height: 40,
@@ -120,7 +120,7 @@ class RegisterPageState extends State<RegisterPage> {
                         onPressed: () {},
                         child: Text(
                           "Daftar",
-                          style: myTexTheme.button,
+                          style: appTextTheme.button,
                         ),
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(vertical: 14),
@@ -136,14 +136,14 @@ class RegisterPageState extends State<RegisterPage> {
                   },
                   child: RichText(
                     text: TextSpan(
-                      style: myTexTheme.bodyText2,
+                      style: appTextTheme.bodyText2,
                       children: <TextSpan>[
                         TextSpan(
                           text: "Sudah punya akun? ",
                         ),
                         TextSpan(
                           text: " Yuk daftar",
-                          style: myTexTheme.bodyText2!
+                          style: appTextTheme.bodyText2!
                               .copyWith(color: softBlueColor),
                         ),
                       ],

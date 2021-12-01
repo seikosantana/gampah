@@ -25,7 +25,7 @@ class CardAbout extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: myTexTheme.bodyText1!.copyWith(color: whiteColor),
+          style: appTextTheme.bodyText1!.copyWith(color: whiteColor),
           textAlign: TextAlign.center,
         ),
       ),

@@ -94,7 +94,7 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
         child: Center(
           child: Text(
             "Laporkan",
-            style: myTexTheme.button,
+            style: appTextTheme.button,
           ),
         ),
       ),

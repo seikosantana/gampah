@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-final TextTheme myTexTheme = TextTheme(
+final TextTheme appTextTheme = TextTheme(
   headline5: GoogleFonts.poppins(
     fontSize: 24,
     fontWeight: FontWeight.w600,

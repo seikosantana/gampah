@@ -20,7 +20,7 @@ class TransactionPage extends StatelessWidget {
       ),
       child: Text(
         "Transaksimu\nmenyelamatkan bumi\ndari sampah.",
-        style: myTexTheme.headline6!.copyWith(color: softGreenColor),
+        style: appTextTheme.headline6!.copyWith(color: softGreenColor),
       ),
     );
   }

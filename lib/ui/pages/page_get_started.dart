@@ -30,7 +30,7 @@ class GetStartedPage extends StatelessWidget {
             Text(
               "Laporin sampahnya\nbiar kami yang buang.",
               textAlign: TextAlign.center,
-              style: myTexTheme.headline5,
+              style: appTextTheme.headline5,
             ),
           ],
         ),
@@ -50,7 +50,7 @@ class GetStartedPage extends StatelessWidget {
                 children: [
                   Text(
                     "Siap\nHijaukan\nKehidupan?",
-                    style: myTexTheme.headline5!.copyWith(color: whiteColor),
+                    style: appTextTheme.headline5!.copyWith(color: whiteColor),
                   ),
                   _btnNext(),
                 ],

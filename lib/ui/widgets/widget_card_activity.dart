@@ -35,7 +35,7 @@ class CardActivity extends StatelessWidget {
                 child: Center(
                   child: Text(
                     skala,
-                    style: myTexTheme.subtitle1!.copyWith(
+                    style: appTextTheme.subtitle1!.copyWith(
                       color: whiteColor,
                     ),
                   ),
@@ -43,7 +43,7 @@ class CardActivity extends StatelessWidget {
               ),
               Text(
                 title,
-                style: myTexTheme.bodyText1,
+                style: appTextTheme.bodyText1,
                 textAlign: TextAlign.center,
               ),
             ],

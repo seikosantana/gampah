@@ -60,13 +60,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           Expanded(
                             child: Text(
                               "Tanggal Permintaan Jemput",
-                              style: myTexTheme.bodyText2,
+                              style: appTextTheme.bodyText2,
                             ),
                           ),
                           Expanded(
                             child: Text(
                               "19 Desember 2021, 15:48 WIB",
-                              style: myTexTheme.bodyText2!
+                              style: appTextTheme.bodyText2!
                                   .copyWith(color: darkGreyColor),
                             ),
                           )
@@ -78,13 +78,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           Expanded(
                             child: Text(
                               "Tanggal Dijemput",
-                              style: myTexTheme.bodyText2,
+                              style: appTextTheme.bodyText2,
                             ),
                           ),
                           Expanded(
                             child: Text(
                               "Proses penjemputan",
-                              style: myTexTheme.bodyText2!
+                              style: appTextTheme.bodyText2!
                                   .copyWith(color: darkGreyColor),
                             ),
                           )
@@ -96,13 +96,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           Expanded(
                             child: Text(
                               "Alamat Tambahan",
-                              style: myTexTheme.bodyText2,
+                              style: appTextTheme.bodyText2,
                             ),
                           ),
                           Expanded(
                             child: Text(
                               "Jl. Hiroshima Naga No. 9, Bogor, Jawa Barat",
-                              style: myTexTheme.bodyText2!
+                              style: appTextTheme.bodyText2!
                                   .copyWith(color: darkGreyColor),
                             ),
                           )
@@ -114,7 +114,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       Row(
                         children: [
                           Text("Bukti Pelaporan Sampah",
-                              style: myTexTheme.bodyText1!
+                              style: appTextTheme.bodyText1!
                                   .copyWith(color: darkGreyColor)),
                         ],
                       ),
@@ -143,7 +143,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                 ),
                                 Text(
                                   "Ambil foto",
-                                  style: myTexTheme.bodyText2,
+                                  style: appTextTheme.bodyText2,
                                 )
                               ],
                             ),
@@ -156,7 +156,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       Row(
                         children: [
                           Text("Bukti pengangkutan",
-                              style: myTexTheme.bodyText1!
+                              style: appTextTheme.bodyText1!
                                   .copyWith(color: darkGreyColor)),
                         ],
                       ),
@@ -182,7 +182,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                 ),
                                 Text(
                                   "Ambil foto",
-                                  style: myTexTheme.bodyText2,
+                                  style: appTextTheme.bodyText2,
                                 )
                               ],
                             ),
@@ -195,7 +195,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       Row(
                         children: [
                           Text("Bukti pembersihan",
-                              style: myTexTheme.bodyText1!
+                              style: appTextTheme.bodyText1!
                                   .copyWith(color: darkGreyColor)),
                         ],
                       ),
@@ -221,7 +221,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                 ),
                                 Text(
                                   "Ambil foto",
-                                  style: myTexTheme.bodyText2,
+                                  style: appTextTheme.bodyText2,
                                 )
                               ],
                             ),
