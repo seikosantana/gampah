@@ -17,7 +17,7 @@ class CardAbout extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.width * 0.5,
         width: MediaQuery.of(context).size.width * 0.36,
-        padding: EdgeInsets.fromLTRB(8, 24, 8, 24),
+        padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
         margin: EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),

@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             onTap: () {
-              Navigator.pushReplacementNamed(context, PageProfile.routeName);
+              Navigator.pushNamed(context, PageProfile.routeName);
             },
           ),
         ],
@@ -215,7 +215,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: softWhiteColor,
       floatingActionButton: _floatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _bottomNavigation(),

@@ -12,7 +12,7 @@ Gampah adalah aplikasi digititalisasi pelaporan sampah sembarangan berbasis Andr
 Repository ini berisikan _source code_ dari front-end aplikasi Gampah yang dibangun menggunakan Google Flutter.
 
 ### Backend
-Backend sistem Gampah berbasis HTTP dan dibangun menggunakan framework Laravel. Source code backend ada pada link [berikut](https://github.com/Bintaaaa/Gampah-Backend).
+Backend sistem Gampah berbasis HTTP dan dibangun menggunakan framework Laravel. Source code backend ada pada link [berikut](https://github.com/Bintaaaa/Gampah-app-BackEnd).
 
 ### Credits
 _Menyusul kemudian.._

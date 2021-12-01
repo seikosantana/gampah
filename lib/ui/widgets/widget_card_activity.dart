@@ -11,8 +11,8 @@ class CardActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.width * 0.5,
-      width: MediaQuery.of(context).size.width * 0.4,
+      height: MediaQuery.of(context).size.width * 0.50,
+      width: MediaQuery.of(context).size.width * 0.41,
       margin: EdgeInsets.only(right: 8),
       child: Card(
         shape: RoundedRectangleBorder(
@@ -20,7 +20,7 @@ class CardActivity extends StatelessWidget {
           side: BorderSide(color: darkGreenColor, width: 2),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,7 +28,7 @@ class CardActivity extends StatelessWidget {
               Container(
                 width: 70,
                 height: 70,
-                margin: EdgeInsets.only(bottom: 16),
+                margin: EdgeInsets.only(bottom: 8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
                     color: darkGreenColor),
