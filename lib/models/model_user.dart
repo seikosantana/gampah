@@ -3,15 +3,15 @@ class UserModel {
   String phone;
   String email;
   String roles;
-  String password;
-  String? token;
+  //String password;
+  String token;
   UserModel({
     required this.name,
     required this.phone,
     required this.email,
     required this.roles,
-    required this.password,
-    this.token,
+    //required this.password,
+    this.token = "currentToken",
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -19,8 +19,8 @@ class UserModel {
         phone: json['phone'],
         email: json['email'],
         roles: json['roles'],
-        password: json['password'],
-        token: json['token'],
+        //password: json['password'],
+        //token: json['token'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -28,7 +28,7 @@ class UserModel {
         'phone': phone,
         'email': email,
         'roles': roles,
-        'password': password,
+        //'password': password,
         'token': token,
       };
 }
