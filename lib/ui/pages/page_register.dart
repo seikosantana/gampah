@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_drop_down.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/helper_functions.dart/extensions.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   static const routeName = "/register";
@@ -16,9 +19,37 @@ class RegisterPage extends StatefulWidget {
 //TODO: Apply colors to icons and text
 class RegisterPageState extends State<RegisterPage> {
   String registerAs = "pengguna";
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController phoneController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    handleRegister() async {
+      bool result = await authProvider.register(
+        nameController.text,
+        phoneController.text,
+        emailController.text,
+        registerAs,
+        passwordController.text,
+      );
+      if (result) {
+        return Navigator.pushNamed(context, HomePage.routeName);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: redColor,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -47,6 +78,7 @@ class RegisterPageState extends State<RegisterPage> {
                     Icons.person,
                     color: softGreyColor,
                   ),
+                  controller: nameController,
                 ),
                 SizedBox(
                   height: 24,
@@ -57,6 +89,7 @@ class RegisterPageState extends State<RegisterPage> {
                   prefix: Container(
                     child: Text("+62"),
                   ),
+                  controller: phoneController,
                 ),
                 SizedBox(
                   height: 24,
@@ -67,6 +100,7 @@ class RegisterPageState extends State<RegisterPage> {
                     Icons.mail,
                     color: softGreyColor,
                   ),
+                  controller: emailController,
                 ),
                 SizedBox(
                   height: 24,
@@ -108,6 +142,7 @@ class RegisterPageState extends State<RegisterPage> {
                     ),
                     onPressed: () {},
                   ),
+                  controller: passwordController,
                 ),
                 SizedBox(
                   height: 24,
@@ -117,7 +152,7 @@ class RegisterPageState extends State<RegisterPage> {
                     Expanded(
                       child: ElevatedButton(
                         // TODO: Replace with Gampah-themed button
-                        onPressed: () {},
+                        onPressed: handleRegister,
                         child: Text(
                           "Daftar",
                           style: appTextTheme.button,
