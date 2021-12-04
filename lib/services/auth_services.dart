@@ -4,6 +4,7 @@ import 'package:gampah_app/models/model_user.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
+  // ignore: non_constant_identifier_names
   String base_url = 'http://192.168.1.12:8000/api/';
   String register = 'register';
 
@@ -27,11 +28,11 @@ class AuthService {
     });
 
     var response = await http.post(Uri.parse(url), headers: header, body: body);
+    print(response.body);
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
       UserModel user = UserModel.fromJson(data['user']);
       user.token = 'Bearer ' + data['access_token'];
-
       return user;
     } else {
       throw Exception("Gagal Register");
