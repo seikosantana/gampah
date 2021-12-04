@@ -7,9 +7,14 @@ class GampahTextField extends StatefulWidget {
   Widget? prefix;
   Widget? postAction;
   bool? maskText;
-
+  TextEditingController? controller;
   GampahTextField(
-      {this.labelText, this.prefix, this.postAction, this.maskText, Key? key})
+      {this.labelText,
+      this.prefix,
+      this.postAction,
+      this.maskText,
+      this.controller,
+      Key? key})
       : super(key: key);
 
   @override
@@ -47,6 +52,7 @@ class _GampahTextFieldState extends State<GampahTextField> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                     ),
+                    controller: widget.controller,
                   ),
                 ),
                 if (widget.postAction != null)
