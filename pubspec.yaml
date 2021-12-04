@@ -44,8 +44,14 @@ dependencies:
   lottie: ^1.2.1
   # getting image from camera or galleries
   image_picker: ^0.8.3+1
+  #for get current position
   geolocator: ^7.7.1
+  #for lauch google maps after get location
   maps_launcher: ^2.0.1
+  #for state management
+  provider: ^6.0.1
+  #for request to server
+  http: ^0.13.4
   
   
 dev_dependencies:
