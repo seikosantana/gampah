@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
@@ -15,6 +16,7 @@ import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/pages/page_transaction_detail.dart';
 import 'package:gampah_app/ui/pages/page_transaction_register.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(TestPage());
 
@@ -23,27 +25,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Gampah",
-      theme: ThemeData(textTheme: appTextTheme),
-      home: GetStartedPage(),
-      initialRoute: SplashPage.routeName,
-      routes: {
-        SplashPage.routeName: (context) => SplashPage(),
-        GetStartedPage.routeName: (context) => GetStartedPage(),
-        HomePage.routeName: (context) => HomePage(),
-        LoginPage.routeName: (context) => LoginPage(),
-        RegisterPage.routeName: (context) => RegisterPage(),
-        RegisterTransaction.routeName: (context) => RegisterTransaction(),
-        TransactionPage.routeName: (context) => TransactionPage(),
-        TransactionDetailPage.routeName: (context) => TransactionDetailPage(),
-        AboutPage.routeName: (context) => AboutPage(),
-        TutorialPage.routeName: (context) => TutorialPage(),
-        ErrorPage.routeName: (context) => ErrorPage(),
-        ErrorGpsPage.routeName: (context) => ErrorGpsPage(),
-        TransactionSuccess.routeName: (context) => TransactionSuccess(),
-        PageProfile.routeName: (context) => PageProfile(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: "Gampah",
+        theme: ThemeData(textTheme: appTextTheme),
+        home: GetStartedPage(),
+        initialRoute: SplashPage.routeName,
+        routes: {
+          SplashPage.routeName: (context) => SplashPage(),
+          GetStartedPage.routeName: (context) => GetStartedPage(),
+          HomePage.routeName: (context) => HomePage(),
+          LoginPage.routeName: (context) => LoginPage(),
+          RegisterPage.routeName: (context) => RegisterPage(),
+          RegisterTransaction.routeName: (context) => RegisterTransaction(),
+          TransactionPage.routeName: (context) => TransactionPage(),
+          TransactionDetailPage.routeName: (context) => TransactionDetailPage(),
+          AboutPage.routeName: (context) => AboutPage(),
+          TutorialPage.routeName: (context) => TutorialPage(),
+          ErrorPage.routeName: (context) => ErrorPage(),
+          ErrorGpsPage.routeName: (context) => ErrorGpsPage(),
+          TransactionSuccess.routeName: (context) => TransactionSuccess(),
+          PageProfile.routeName: (context) => PageProfile(),
+        },
+      ),
     );
   }
 }
