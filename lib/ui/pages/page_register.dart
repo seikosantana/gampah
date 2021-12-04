@@ -35,6 +35,7 @@ class RegisterPageState extends State<RegisterPage> {
         registerAs,
         passwordController.text,
       );
+      print(result);
       if (result) {
         return Navigator.pushNamed(context, HomePage.routeName);
       } else {
