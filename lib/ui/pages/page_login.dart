@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_register.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = "/login";
@@ -16,8 +18,31 @@ class LoginPage extends StatefulWidget {
 
 //TODO: Apply colors to icons and text
 class LoginPageState extends State<LoginPage> {
+  bool isNotHold = true;
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    handleLogin() async {
+      bool result = await authProvider.login(
+          emailController.text, passwordController.text);
+      print(result);
+      if (result) {
+        return Navigator.pushReplacementNamed(context, HomePage.routeName);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: redColor,
+            content: Text(
+              'Gagal Login!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -51,6 +76,7 @@ class LoginPageState extends State<LoginPage> {
                   color: softGreyColor,
                 ),
                 labelText: "Email kamu",
+                controller: emailController,
               ),
               SizedBox(
                 height: 24,
@@ -59,12 +85,19 @@ class LoginPageState extends State<LoginPage> {
                 labelText: "Kata sandi",
                 prefix: Icon(Icons.lock, color: softGreyColor),
                 postAction: IconButton(
+                  splashColor: Colors.transparent,
                   icon: Icon(
-                    Icons.visibility_off,
-                    color: softGreyColor,
+                    isNotHold ? Icons.visibility_off : Icons.visibility,
+                    color: isNotHold ? softGreyColor : darkGreenColor,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      isNotHold = !isNotHold;
+                    });
+                  },
                 ),
+                controller: passwordController,
+                maskText: isNotHold,
               ),
               SizedBox(
                 height: 24,
@@ -74,10 +107,7 @@ class LoginPageState extends State<LoginPage> {
                   Expanded(
                     child: ElevatedButton(
                       // TODO: Replace with Gampah-themed button
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, HomePage.routeName);
-                      },
+                      onPressed: handleLogin,
                       child: Text(
                         "Masuk",
                         style: appTextTheme.button,
