@@ -52,6 +52,8 @@ dependencies:
   provider: ^6.0.1
   #for request to server
   http: ^0.13.4
+  #for saved in local storage with shared preference
+  shared_preferences: ^2.0.9
   
   
 dev_dependencies:
