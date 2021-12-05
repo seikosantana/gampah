@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/services/auth_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
   UserModel? _user;
@@ -35,6 +36,10 @@ class AuthProvider with ChangeNotifier {
     try {
       UserModel user = await AuthService().loginUser(email, password);
       _user = user;
+      //check value in shared Preference
+      // SharedPreferences localStorage = await SharedPreferences.getInstance();
+      // localStorage.setString("token", user.token);
+      // print(localStorage.getString("token"));
       return true;
     } catch (e) {
       print(e);
