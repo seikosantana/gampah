@@ -3,6 +3,7 @@ import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
+import 'package:gampah_app/ui/error/success_register.dart';
 import 'package:gampah_app/ui/error/success_transaction.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           TutorialPage.routeName: (context) => TutorialPage(),
           ErrorPage.routeName: (context) => ErrorPage(),
           ErrorGpsPage.routeName: (context) => ErrorGpsPage(),
+          RegisterSuccess.routeName: (context) => RegisterSuccess(),
           TransactionSuccess.routeName: (context) => TransactionSuccess(),
           PageProfile.routeName: (context) => PageProfile(),
         },
