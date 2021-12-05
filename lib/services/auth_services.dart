@@ -51,7 +51,7 @@ class AuthService {
     var body = jsonEncode({'email': email, 'password': password});
 
     var response = await http.post(Uri.parse(url), headers: header, body: body);
-    print(response.body);
+
     print(response.body);
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
