@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/error/success_register.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_drop_down.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
@@ -37,7 +38,8 @@ class RegisterPageState extends State<RegisterPage> {
       );
       print(result);
       if (result) {
-        return Navigator.pushNamed(context, HomePage.routeName);
+        return Navigator.pushReplacementNamed(
+            context, RegisterSuccess.routeName);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -178,7 +180,7 @@ class RegisterPageState extends State<RegisterPage> {
                           text: "Sudah punya akun? ",
                         ),
                         TextSpan(
-                          text: " Yuk daftar",
+                          text: " Yuk login",
                           style: appTextTheme.bodyText2!
                               .copyWith(color: softBlueColor),
                         ),
