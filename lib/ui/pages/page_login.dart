@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
-import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_register.dart';
+import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = "/login";
@@ -19,16 +21,27 @@ class LoginPage extends StatefulWidget {
 //TODO: Apply colors to icons and text
 class LoginPageState extends State<LoginPage> {
   bool isNotHold = true;
+
   TextEditingController emailController = TextEditingController(text: '');
   TextEditingController passwordController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
     handleLogin() async {
       bool result = await authProvider.login(
           emailController.text, passwordController.text);
+      UserModel? user = authProvider.getUser;
       print(result);
+
       if (result) {
+        if (user?.roles == 'driver') {
+          return Navigator.pushReplacementNamed(
+              context, TransactionPage.routeName);
+        }
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString("token", user!.token);
+        print(localStorage.getString("token"));
         return Navigator.pushReplacementNamed(context, HomePage.routeName);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
