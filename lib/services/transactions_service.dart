@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TransactionsService {
   String base_url = 'http://192.168.1.12:8000/api/';
@@ -14,19 +15,14 @@ class TransactionsService {
     double longitude,
     String image,
   ) async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = await localStorage.getString("token").toString();
     var url = "$base_url$transactions";
     var header = {
       'Content-Type': 'application/json',
       'Charset': 'utf-8',
+      'Authorization': token
     };
-    // var body = jsonEncode({
-    //   'reporter_id': reporterId,
-    //   'address_detail': addressDetail,
-    //   'status': status,
-    //   'latitude': latitude,
-    //   'longitude': longitude,
-    // });
-
     var request = await http.MultipartRequest('POST', Uri.parse(url));
     request.headers.addAll(header);
     request.fields['reporter_id'] = reporterId.toString();
