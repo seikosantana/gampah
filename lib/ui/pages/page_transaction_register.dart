@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gampah_app/helper_functions.dart/geolocation.dart';
+import 'package:gampah_app/models/model_user.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
@@ -115,6 +117,8 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel? user = authProvider.getUser;
     handleTransaction() async {
       Position? currentPosition =
           await determinePosition(locationNotEnabledCallback: () {
@@ -123,7 +127,7 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
         Navigator.pushNamed(context, ErrorPage.routeName);
       });
       bool result = await transactionProvider.addTransaction(
-          1,
+          user!.id,
           addressController.text,
           "success",
           currentPosition!.latitude,
