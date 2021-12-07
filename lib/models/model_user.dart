@@ -1,4 +1,5 @@
 class UserModel {
+  int id;
   String name;
   String phone;
   String email;
@@ -6,6 +7,7 @@ class UserModel {
   //String password;
   String token;
   UserModel({
+    required this.id,
     required this.name,
     required this.phone,
     required this.email,
@@ -15,6 +17,7 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        id: json['id'],
         name: json['name'],
         phone: json['phone'],
         email: json['email'],
