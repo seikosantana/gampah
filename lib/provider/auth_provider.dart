@@ -36,10 +36,6 @@ class AuthProvider with ChangeNotifier {
     try {
       UserModel user = await AuthService().loginUser(email, password);
       _user = user;
-      //check value in shared Preference
-      // SharedPreferences localStorage = await SharedPreferences.getInstance();
-      // localStorage.setString("token", user.token);
-      // print(localStorage.getString("token"));
       return true;
     } catch (e) {
       print(e);
