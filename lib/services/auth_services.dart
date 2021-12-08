@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:gampah_app/models/model_user.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // ignore: non_constant_identifier_names
   String base_url = 'http://192.168.1.12:8000/api/';
   String register = 'register';
   String login = 'login';
+  String logout = 'logout';
 
   Future<UserModel> registerUser(
     String name,
@@ -60,6 +62,24 @@ class AuthService {
       return user;
     } else {
       throw Exception("Gagal Login");
+    }
+  }
+
+  Future<bool> logoutUser() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = await localStorage.getString("token").toString();
+    var url = "$base_url$logout";
+    var header = {
+      'Content-Type': 'application/json',
+      'Charset': 'utf-8',
+      'Authorization': token
+    };
+    var response = await http.post(Uri.parse(url), headers: header);
+    if (response.statusCode == 200) {
+      await localStorage.remove("token");
+      return true;
+    } else {
+      throw Exception("Gagal Logout");
     }
   }
 }
