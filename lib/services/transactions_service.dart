@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:gampah_app/models/model_transactions.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TransactionsService {
   String base_url = 'http://192.168.1.12:8000/api/';
   String transactions = 'transactions';
+  String listTransactions = 'transactions/';
 
   Future<Map<String, dynamic>> addTransaction(
     int reporterId,
@@ -43,6 +45,23 @@ class TransactionsService {
     } else {
       print("failed");
       return valueBody;
+    }
+  }
+
+  Future<Transactions> allTransactionsByToken() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = await localStorage.getString("token").toString();
+    String url = "http://192.168.1.12:8000/api/transactions/";
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': token,
+    };
+    final response = await http.get(Uri.parse(url), headers: headers);
+    if (response.statusCode == 200) {
+      //print(response.body);
+      return Transactions.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("Something Error");
     }
   }
 }
