@@ -19,6 +19,7 @@ class RegisterPage extends StatefulWidget {
 //TODO: Apply colors to icons and text
 class RegisterPageState extends State<RegisterPage> {
   String registerAs = "pengguna";
+  bool isNotHold = true;
   TextEditingController nameController = TextEditingController(text: '');
   TextEditingController phoneController = TextEditingController(text: '');
   TextEditingController emailController = TextEditingController(text: '');
@@ -132,17 +133,21 @@ class RegisterPageState extends State<RegisterPage> {
                 GampahTextField(
                   //TODO: Implement visibility toggle
                   labelText: "Password",
-                  maskText: true,
+                  maskText: isNotHold,
                   prefix: Icon(
                     Icons.lock,
                     color: softGreyColor,
                   ),
                   postAction: IconButton(
                     icon: Icon(
-                      Icons.visibility_off,
-                      color: softGreyColor,
+                      isNotHold ? Icons.visibility_off : Icons.visibility,
+                      color: isNotHold ? softGreyColor : darkGreenColor,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        isNotHold = !isNotHold;
+                      });
+                    },
                   ),
                   controller: passwordController,
                 ),
