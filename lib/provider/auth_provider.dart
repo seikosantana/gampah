@@ -42,4 +42,14 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> logout() async {
+    try {
+      await AuthService().logoutUser();
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }
