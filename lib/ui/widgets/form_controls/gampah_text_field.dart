@@ -7,12 +7,16 @@ class GampahTextField extends StatefulWidget {
   Widget? prefix;
   Widget? postAction;
   bool? maskText;
+  bool? isEnable;
+  String? hintText;
   TextEditingController? controller;
   GampahTextField(
       {this.labelText,
       this.prefix,
       this.postAction,
       this.maskText,
+      this.isEnable,
+      this.hintText,
       this.controller,
       Key? key})
       : super(key: key);
@@ -49,8 +53,10 @@ class _GampahTextFieldState extends State<GampahTextField> {
                 Expanded(
                   child: TextFormField(
                     obscureText: widget.maskText ?? false,
+                    enabled: widget.isEnable,
                     decoration: InputDecoration(
                       border: InputBorder.none,
+                      hintText: widget.hintText,
                     ),
                     controller: widget.controller,
                   ),
