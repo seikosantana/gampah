@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/transactions_provider.dart';
+import 'package:gampah_app/services/transactions_service.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => TransactionProvider(),
+          create: (_) =>
+              TransactionProvider(transactionsService: TransactionsService()),
         ),
       ],
       child: MaterialApp(
