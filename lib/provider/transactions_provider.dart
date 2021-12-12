@@ -55,10 +55,9 @@ class TransactionProvider with ChangeNotifier {
       } else {
         _state = ResultState.hashData;
         notifyListeners();
-        print(result);
         return _transactions = result.transactionsList;
       }
-    } catch (e) {
+    } on Exception catch (e) {
       _state = ResultState.error;
       print(e);
       notifyListeners();
