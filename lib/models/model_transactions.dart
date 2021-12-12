@@ -11,8 +11,8 @@ class Transactions {
 
 class TransactionList {
   final int id;
-  final int reporter_id;
-  final int driver_id;
+  final String reporter_id;
+  final String driver_id;
   final String address_detail;
   final String status;
   final String created_at;
