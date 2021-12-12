@@ -18,7 +18,7 @@ class RegisterPage extends StatefulWidget {
 
 //TODO: Apply colors to icons and text
 class RegisterPageState extends State<RegisterPage> {
-  String registerAs = "pengguna";
+  String registerAs = "PENGGUNA";
   bool isNotHold = true;
   TextEditingController nameController = TextEditingController(text: '');
   TextEditingController phoneController = TextEditingController(text: '');
@@ -109,7 +109,7 @@ class RegisterPageState extends State<RegisterPage> {
                   height: 24,
                 ),
                 GampahDropDown(
-                  items: ["pengguna", "driver"]
+                  items: ["PENGGUNA", "DRIVER"]
                       .map((e) => DropdownMenuItem(
                             child: Text(e.toCapitalized()),
                             value: e,
