@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // ignore: non_constant_identifier_names
-  String base_url = 'http://192.168.1.12:8000/api/';
+  String base_url = 'https://shamo.tanpabatasgroup.com/api/';
   String register = 'register';
   String login = 'login';
   String logout = 'logout';
