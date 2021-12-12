@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/widgets/error/widget_alert_error.dart';
 
 class TransactionSuccess extends StatelessWidget {
   const TransactionSuccess({Key? key}) : super(key: key);
   static const routeName = '/regist_success';
-  Widget _itemAlert() {
+  Widget _itemAlert(BuildContext context) {
     return AlertError(
-        title: "Yeay Transaksimu\nSangat Berharga Untuk Bumi dan Kutub Utara!",
-        lottie: "assets/transaction_success.json");
+      title: "Yeay Transaksimu\nSangat Berharga Untuk Bumi dan Kutub Utara!",
+      lottie: "assets/transaction_success.json",
+      ontap: () {
+        Navigator.pushReplacementNamed(context, TransactionPage.routeName);
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _itemAlert());
+    return Scaffold(body: _itemAlert(context));
   }
 }
