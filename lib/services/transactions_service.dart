@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:gampah_app/models/model_transactions.dart';
+import 'package:gampah_app/models/model_transactions_detail.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,6 +9,7 @@ class TransactionsService {
   String base_url = 'https://shamo.tanpabatasgroup.com/api/';
   String transactions = 'transactions';
   String listTransactions = 'transactions/';
+  String detail = '/details';
 
   Future<Map<String, dynamic>> addTransaction(
     int reporterId,
@@ -60,6 +62,23 @@ class TransactionsService {
     if (response.statusCode == 200) {
       print(response.body);
       return Transactions.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("Something Error");
+    }
+  }
+
+  Future<TransactionsDetail> getTransactionDetail(id) async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = await localStorage.getString("token").toString();
+    String url =
+        "https://shamo.tanpabatasgroup.com/api/transactions/$id/details";
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': token,
+    };
+    final response = await http.get(Uri.parse(url), headers: headers);
+    if (response.statusCode == 200) {
+      return TransactionsDetail.fromJson(json.decode(response.body));
     } else {
       throw Exception("Something Error");
     }
