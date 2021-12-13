@@ -50,11 +50,13 @@ class TransactionPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var transaction = state.transactions[index];
                   return CardTransaction(
-                      date: transaction.created_at,
-                      name: user!.name,
-                      status: transaction.status,
-                      color: softGreenColor,
-                      address: transaction.address_detail);
+                    date: transaction.created_at,
+                    name: user!.name,
+                    status: transaction.status,
+                    color: softGreenColor,
+                    address: transaction.address_detail,
+                    argument: transaction,
+                  );
                 },
               );
             } else if (state.state == ResultState.nodata) {
