@@ -15,6 +15,8 @@ class TransactionList {
   final String driver_id;
   final String address_detail;
   final String status;
+  final String latitude;
+  final String longitude;
   final String created_at;
   TransactionList({
     required this.id,
@@ -22,6 +24,8 @@ class TransactionList {
     required this.driver_id,
     required this.address_detail,
     required this.status,
+    required this.latitude,
+    required this.longitude,
     required this.created_at,
   });
 
@@ -32,6 +36,8 @@ class TransactionList {
         driver_id: json['driver_id'],
         address_detail: json['address_detail'],
         status: json['status'],
+        latitude: json['latitude'],
+        longitude: json['longitude'],
         created_at: json['created_at'],
       );
 
@@ -41,6 +47,8 @@ class TransactionList {
         'driver_id': driver_id,
         'address_detail': address_detail,
         'status': status,
+        'latitude': latitude,
+        'longitude': longitude,
         'created_at': created_at
       };
 }
