@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/services/transactions_service.dart';
@@ -51,7 +52,10 @@ class MyApp extends StatelessWidget {
           RegisterPage.routeName: (context) => RegisterPage(),
           RegisterTransaction.routeName: (context) => RegisterTransaction(),
           TransactionPage.routeName: (context) => TransactionPage(),
-          TransactionDetailPage.routeName: (context) => TransactionDetailPage(),
+          TransactionDetailPage.routeName: (context) => TransactionDetailPage(
+                transactionList: ModalRoute.of(context)?.settings.arguments
+                    as TransactionList,
+              ),
           AboutPage.routeName: (context) => AboutPage(),
           TutorialPage.routeName: (context) => TutorialPage(),
           ErrorPage.routeName: (context) => ErrorPage(),
