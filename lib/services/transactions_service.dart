@@ -10,7 +10,9 @@ class TransactionsService {
   String transactions = 'transactions';
   String listTransactions = 'transactions/';
   String detail = '/details';
-
+  String update = 'transactions/operations/';
+  String observation = '/observation';
+  String cleanup = '/cleanup';
   Future<Map<String, dynamic>> addTransaction(
     int reporterId,
     String addressDetail,
@@ -50,6 +52,37 @@ class TransactionsService {
     }
   }
 
+  Future<Map<String, dynamic>> updateTransaction(id, path, String image) async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = await localStorage.getString("token").toString();
+    var url;
+    if (path == 'observation_img') {
+      url = '$base_url$update$id$observation';
+    } else {
+      url = '$base_url$update$id$cleanup';
+    }
+    var header = {
+      'Content-Type': 'application/json',
+      'Charset': 'utf-8',
+      'Authorization': token
+    };
+    var request = await http.MultipartRequest('POST', Uri.parse(url));
+    request.headers.addAll(header);
+    request.files.add(await http.MultipartFile.fromPath('$path', image));
+    var responseServer = await request.send();
+    var responseCallback = await http.Response.fromStream(responseServer);
+    final valueBody = jsonDecode(responseCallback.body);
+    print(responseCallback);
+    if (responseCallback.statusCode == 200) {
+      print("success");
+      print(valueBody);
+      return valueBody;
+    } else {
+      print("failed");
+      return valueBody;
+    }
+  }
+
   Future<Transactions> allTransactionsByToken() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var token = await localStorage.getString("token").toString();
@@ -70,8 +103,7 @@ class TransactionsService {
   Future<TransactionsDetail> getTransactionDetail(id) async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var token = await localStorage.getString("token").toString();
-    String url =
-        "https://shamo.tanpabatasgroup.com/api/transactions/$id/details";
+    String url = "$base_url$listTransactions$id$detail";
     var headers = {
       'Accept': 'application/json',
       'Authorization': token,
