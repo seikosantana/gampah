@@ -35,10 +35,6 @@ class LoginPageState extends State<LoginPage> {
       print(result);
 
       if (result) {
-        if (user?.roles == 'DRIVER') {
-          return Navigator.pushReplacementNamed(
-              context, TransactionPage.routeName);
-        }
         SharedPreferences localStorage = await SharedPreferences.getInstance();
         localStorage.setString("token", user!.token);
         print(localStorage.getString("token"));
