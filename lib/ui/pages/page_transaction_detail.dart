@@ -337,113 +337,112 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           SizedBox(
                             height: 24,
                           ),
-
-                          // transactionsDetail.picked_image == null
-                          //     ? Container()
-                          //     : Row(
-                          //         children: [
-                          //           Text("Bukti pembersihan",
-                          //               style: appTextTheme.bodyText1!
-                          //                   .copyWith(color: darkGreyColor)),
-                          //         ],
-                          //       ),
-                          // transactionsDetail.picked_image == null
-                          //     ? Container()
-                          //     : transactionsDetail.finished_image == null
-                          //         ? user.roles == 'DRIVER'
-                          //             ? InkWell(
-                          //                 onTap: () => pickImage(),
-                          //                 child: image != null
-                          //                     ? Container(
-                          //                         margin: EdgeInsets.only(
-                          //                             bottom: 16),
-                          //                         child: ClipRRect(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   17),
-                          //                           child: Image.file(
-                          //                             image!,
-                          //                             width:
-                          //                                 MediaQuery.of(context)
-                          //                                     .size
-                          //                                     .width,
-                          //                             height: 300,
-                          //                             fit: BoxFit.cover,
-                          //                           ),
-                          //                         ),
-                          //                       )
-                          //                     : Container(
-                          //                         width: MediaQuery.of(context)
-                          //                             .size
-                          //                             .width,
-                          //                         height: 200,
-                          //                         margin: EdgeInsets.only(
-                          //                             top: 16, bottom: 8),
-                          //                         decoration: BoxDecoration(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   12),
-                          //                           color: softWhiteColor,
-                          //                         ),
-                          //                         child: Center(
-                          //                             child: Column(
-                          //                           mainAxisAlignment:
-                          //                               MainAxisAlignment
-                          //                                   .center,
-                          //                           children: [
-                          //                             Icon(
-                          //                               Icons.camera_alt,
-                          //                               color: softGreyColor,
-                          //                             ),
-                          //                             Text("Ambil Foto")
-                          //                           ],
-                          //                         )),
-                          //                       ),
-                          //               )
-                          //             : Container(
-                          //                 height: 200,
-                          //                 width:
-                          //                     MediaQuery.of(context).size.width,
-                          //                 decoration: BoxDecoration(
-                          //                   borderRadius:
-                          //                       BorderRadius.circular(12),
-                          //                   color: softWhiteColor,
-                          //                 ),
-                          //                 child: Expanded(
-                          //                   child: Column(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment.center,
-                          //                     children: [
-                          //                       CircularProgressIndicator(
-                          //                         color: softGreyColor,
-                          //                       ),
-                          //                       SizedBox(
-                          //                         height: 12,
-                          //                       ),
-                          //                       Text(
-                          //                         "Tunggu Driver Menjemput",
-                          //                         style: appTextTheme.bodyText2,
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //               )
-                          //         : InkWell(
-                          //             onTap: () {},
-                          //             child: Container(
-                          //               height: 200,
-                          //               width:
-                          //                   MediaQuery.of(context).size.width,
-                          //               decoration: BoxDecoration(
-                          //                 borderRadius:
-                          //                     BorderRadius.circular(12),
-                          //                 image: DecorationImage(
-                          //                     image: NetworkImage(
-                          //                         "https://shamo.tanpabatasgroup.com/storage/uploads/${transactionsDetail.finished_image}"),
-                          //                     fit: BoxFit.cover),
-                          //               ),
-                          //             ),
-                          //           ),
+                          transactionsDetail.picked_image == null
+                              ? Container()
+                              : Row(
+                                  children: [
+                                    Text("Bukti pembersihan",
+                                        style: appTextTheme.bodyText1!
+                                            .copyWith(color: darkGreyColor)),
+                                  ],
+                                ),
+                          transactionsDetail.picked_image == null
+                              ? Container()
+                              : transactionsDetail.finished_image == null
+                                  ? user.roles == 'DRIVER'
+                                      ? InkWell(
+                                          onTap: () => pickImage(),
+                                          child: image != null
+                                              ? Container(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 16),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            17),
+                                                    child: Image.file(
+                                                      image!,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 300,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 200,
+                                                  margin: EdgeInsets.only(
+                                                      top: 16, bottom: 8),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                    color: softWhiteColor,
+                                                  ),
+                                                  child: Center(
+                                                      child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.camera_alt,
+                                                        color: softGreyColor,
+                                                      ),
+                                                      Text("Ambil Foto")
+                                                    ],
+                                                  )),
+                                                ),
+                                        )
+                                      : Container(
+                                          height: 200,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            color: softWhiteColor,
+                                          ),
+                                          child: Expanded(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CircularProgressIndicator(
+                                                  color: softGreyColor,
+                                                ),
+                                                SizedBox(
+                                                  height: 12,
+                                                ),
+                                                Text(
+                                                  "Tunggu Driver Menjemput",
+                                                  style: appTextTheme.bodyText2,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                  : InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        height: 200,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  "https://shamo.tanpabatasgroup.com/storage/uploads/${transactionsDetail.finished_image}"),
+                                              fit: BoxFit.cover),
+                                        ),
+                                      ),
+                                    ),
                           transactionsDetail.finished_image == null
                               ? user.roles == 'DRIVER'
                                   ? _customButton(() => handleTransactions())
