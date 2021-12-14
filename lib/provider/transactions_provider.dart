@@ -44,6 +44,20 @@ class TransactionProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> updateTransactions(int id, String path, String image) async {
+    try {
+      await TransactionsService().updateTransaction(
+        id,
+        path,
+        image,
+      );
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future<dynamic> _fetchAllData() async {
     try {
       _state = ResultState.loading;
