@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gampah_app/helper_functions.dart/geolocation.dart';
 import 'package:gampah_app/models/model_transactions.dart';
@@ -8,8 +10,10 @@ import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
+import 'package:gampah_app/ui/error/success_transaction.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +28,14 @@ class TransactionDetailPage extends StatefulWidget {
 }
 
 class _TransactionDetailPageState extends State<TransactionDetailPage> {
+  File? image;
+  Future pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
+    final imageTemporary = File(image.path);
+    setState(() => this.image = imageTemporary);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -32,9 +44,34 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
             .fetchDetailTransactions(widget.transactionList.id));
   }
 
+  Widget _customButton(Function() handle) {
+    return Container(
+      height: 50,
+      child: ElevatedButton(
+        onPressed: handle,
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(darkGreenColor),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            "Laporkan",
+            style: appTextTheme.button,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print(widget.transactionList.id);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel? user = authProvider.getUser;
     bool isDriver = user!.roles == 'DRIVER';
@@ -70,8 +107,39 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                   } else if (state.state == ResultState.hashData &&
                       state.transactionsDetail != null) {
                     final transactionsDetail = state.transactionsDetail;
-                    print("ini lah $transactionsDetail");
-                    print(transactionsDetail!.report_image);
+                    var path;
+                    print("instanse Of $transactionsDetail");
+                    print("Report Image ${transactionsDetail!.report_image}");
+                    print("Picked Image ${transactionsDetail.picked_image}");
+
+                    handleTransactions() async {
+                      if (transactionsDetail.picked_image == null) {
+                        path = "observation_img";
+                      } else {
+                        path = "cleanup_img";
+                      }
+                      bool result =
+                          await transactionProvider.updateTransactions(
+                        transactionsDetail.id,
+                        path,
+                        image!.path,
+                      );
+                      if (result) {
+                        return Navigator.pushReplacementNamed(
+                            context, TransactionSuccess.routeName);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: redColor,
+                            content: Text(
+                              'Transaksi Gagal diperbaharui!',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    }
+
                     return Padding(
                       padding: EdgeInsets.all(24),
                       child: Column(
@@ -174,79 +242,213 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           ),
                           Row(
                             children: [
-                              Text("Bukti pengangkutan",
+                              Text("Bukti peninjauan",
                                   style: appTextTheme.bodyText1!
                                       .copyWith(color: darkGreyColor)),
                             ],
                           ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 200,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: softWhiteColor,
-                              ),
-                              width: MediaQuery.of(context).size.width,
-                              child: Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.camera_alt,
-                                      color: darkGreyColor,
-                                    ),
-                                    SizedBox(
-                                      height: 12,
-                                    ),
-                                    Text(
-                                      "Ambil foto",
-                                      style: appTextTheme.bodyText2,
+                          transactionsDetail.picked_image == null
+                              ? user.roles == 'DRIVER'
+                                  ? InkWell(
+                                      onTap: () => pickImage(),
+                                      child: image != null
+                                          ? Container(
+                                              margin:
+                                                  EdgeInsets.only(bottom: 16),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(17),
+                                                child: Image.file(
+                                                  image!,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 300,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            )
+                                          : Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 200,
+                                              margin: EdgeInsets.only(
+                                                  top: 8, bottom: 16),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                color: softWhiteColor,
+                                              ),
+                                              child: Center(
+                                                  child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.camera_alt,
+                                                    color: softGreyColor,
+                                                  ),
+                                                  Text("Ambil Foto")
+                                                ],
+                                              )),
+                                            ),
                                     )
-                                  ],
+                                  : Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: softWhiteColor,
+                                      ),
+                                      child: Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircularProgressIndicator(
+                                              color: softGreyColor,
+                                            ),
+                                            SizedBox(
+                                              height: 12,
+                                            ),
+                                            Text(
+                                              "Tunggu Driver Meninjau",
+                                              style: appTextTheme.bodyText2,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                              : InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              "https://shamo.tanpabatasgroup.com/storage/uploads/${transactionsDetail.picked_image}"),
+                                          fit: BoxFit.cover),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
                           SizedBox(
                             height: 24,
                           ),
-                          Row(
-                            children: [
-                              Text("Bukti pembersihan",
-                                  style: appTextTheme.bodyText1!
-                                      .copyWith(color: darkGreyColor)),
-                            ],
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 200,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: softWhiteColor,
-                              ),
-                              child: Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.camera_alt,
-                                      color: darkGreyColor,
-                                    ),
-                                    SizedBox(
-                                      height: 12,
-                                    ),
-                                    Text(
-                                      "Ambil foto",
-                                      style: appTextTheme.bodyText2,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+
+                          // transactionsDetail.picked_image == null
+                          //     ? Container()
+                          //     : Row(
+                          //         children: [
+                          //           Text("Bukti pembersihan",
+                          //               style: appTextTheme.bodyText1!
+                          //                   .copyWith(color: darkGreyColor)),
+                          //         ],
+                          //       ),
+                          // transactionsDetail.picked_image == null
+                          //     ? Container()
+                          //     : transactionsDetail.finished_image == null
+                          //         ? user.roles == 'DRIVER'
+                          //             ? InkWell(
+                          //                 onTap: () => pickImage(),
+                          //                 child: image != null
+                          //                     ? Container(
+                          //                         margin: EdgeInsets.only(
+                          //                             bottom: 16),
+                          //                         child: ClipRRect(
+                          //                           borderRadius:
+                          //                               BorderRadius.circular(
+                          //                                   17),
+                          //                           child: Image.file(
+                          //                             image!,
+                          //                             width:
+                          //                                 MediaQuery.of(context)
+                          //                                     .size
+                          //                                     .width,
+                          //                             height: 300,
+                          //                             fit: BoxFit.cover,
+                          //                           ),
+                          //                         ),
+                          //                       )
+                          //                     : Container(
+                          //                         width: MediaQuery.of(context)
+                          //                             .size
+                          //                             .width,
+                          //                         height: 200,
+                          //                         margin: EdgeInsets.only(
+                          //                             top: 16, bottom: 8),
+                          //                         decoration: BoxDecoration(
+                          //                           borderRadius:
+                          //                               BorderRadius.circular(
+                          //                                   12),
+                          //                           color: softWhiteColor,
+                          //                         ),
+                          //                         child: Center(
+                          //                             child: Column(
+                          //                           mainAxisAlignment:
+                          //                               MainAxisAlignment
+                          //                                   .center,
+                          //                           children: [
+                          //                             Icon(
+                          //                               Icons.camera_alt,
+                          //                               color: softGreyColor,
+                          //                             ),
+                          //                             Text("Ambil Foto")
+                          //                           ],
+                          //                         )),
+                          //                       ),
+                          //               )
+                          //             : Container(
+                          //                 height: 200,
+                          //                 width:
+                          //                     MediaQuery.of(context).size.width,
+                          //                 decoration: BoxDecoration(
+                          //                   borderRadius:
+                          //                       BorderRadius.circular(12),
+                          //                   color: softWhiteColor,
+                          //                 ),
+                          //                 child: Expanded(
+                          //                   child: Column(
+                          //                     mainAxisAlignment:
+                          //                         MainAxisAlignment.center,
+                          //                     children: [
+                          //                       CircularProgressIndicator(
+                          //                         color: softGreyColor,
+                          //                       ),
+                          //                       SizedBox(
+                          //                         height: 12,
+                          //                       ),
+                          //                       Text(
+                          //                         "Tunggu Driver Menjemput",
+                          //                         style: appTextTheme.bodyText2,
+                          //                       )
+                          //                     ],
+                          //                   ),
+                          //                 ),
+                          //               )
+                          //         : InkWell(
+                          //             onTap: () {},
+                          //             child: Container(
+                          //               height: 200,
+                          //               width:
+                          //                   MediaQuery.of(context).size.width,
+                          //               decoration: BoxDecoration(
+                          //                 borderRadius:
+                          //                     BorderRadius.circular(12),
+                          //                 image: DecorationImage(
+                          //                     image: NetworkImage(
+                          //                         "https://shamo.tanpabatasgroup.com/storage/uploads/${transactionsDetail.finished_image}"),
+                          //                     fit: BoxFit.cover),
+                          //               ),
+                          //             ),
+                          //           ),
+                          transactionsDetail.finished_image == null
+                              ? user.roles == 'DRIVER'
+                                  ? _customButton(() => handleTransactions())
+                                  : Container()
+                              : Container(),
                         ],
                       ),
                     );
