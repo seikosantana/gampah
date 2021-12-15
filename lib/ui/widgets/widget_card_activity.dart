@@ -17,7 +17,7 @@ class CardActivity extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: darkGreenColor, width: 2),
+          side: BorderSide(color: darkGreenColor, width: 1),
         ),
         child: Padding(
           padding: EdgeInsets.all(8),
