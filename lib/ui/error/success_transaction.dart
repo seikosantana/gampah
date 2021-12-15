@@ -10,7 +10,7 @@ class TransactionSuccess extends StatelessWidget {
       title: "Yeay Transaksimu\nSangat Berharga Untuk Bumi dan Kutub Utara!",
       lottie: "assets/transaction_success.json",
       ontap: () {
-        Navigator.pushReplacementNamed(context, TransactionPage.routeName);
+        Navigator.of(context).pop();
       },
     );
   }
