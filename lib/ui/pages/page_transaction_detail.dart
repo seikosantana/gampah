@@ -59,7 +59,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
         ),
         child: Center(
           child: Text(
-            "Laporkan",
+            "Perbaharui Tinjauan",
             style: appTextTheme.button,
           ),
         ),
@@ -125,6 +125,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         image!.path,
                       );
                       if (result) {
+                        transactionProvider.fetchAllData();
                         return Navigator.pushReplacementNamed(
                             context, TransactionSuccess.routeName);
                       } else {
