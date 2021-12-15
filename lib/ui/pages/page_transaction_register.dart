@@ -135,6 +135,7 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
           image!.path);
       print(currentPosition);
       if (result) {
+        transactionProvider.fetchAllData();
         return Navigator.pushReplacementNamed(
             context, TransactionSuccess.routeName);
       } else {
