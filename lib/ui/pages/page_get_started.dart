@@ -44,17 +44,15 @@ class GetStartedPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.all(24),
             padding: EdgeInsets.fromLTRB(0, 10, 20, 0),
-            child: Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Siap\nHijaukan\nKehidupan?",
-                    style: appTextTheme.headline5!.copyWith(color: whiteColor),
-                  ),
-                  _btnNext(),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Siap\nHijaukan\nKehidupan?",
+                  style: appTextTheme.headline5!.copyWith(color: whiteColor),
+                ),
+                _btnNext(),
+              ],
             ),
           )
         ],
