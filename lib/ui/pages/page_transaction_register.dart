@@ -113,6 +113,34 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
     );
   }
 
+  Widget _alertWarning() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      decoration: BoxDecoration(
+        color: yellowColor.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: yellowColor, width: 1),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.info_outline,
+            color: darkGreyColor,
+          ),
+          SizedBox(
+            width: 16,
+          ),
+          Text(
+            "Lokasi anda sudah direkam",
+            style: appTextTheme.bodyText1!.copyWith(color: darkGreyColor),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     TransactionProvider transactionProvider =
@@ -159,6 +187,7 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _toolbar(),
+              _alertWarning(),
               _textField(context),
               _customButton(handleTransaction),
             ],
