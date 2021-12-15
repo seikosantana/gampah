@@ -14,6 +14,7 @@ import 'package:gampah_app/ui/error/success_transaction.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:provider/provider.dart';
 
@@ -314,31 +315,12 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                               )),
                                             ),
                                     )
-                                  : Container(
-                                      height: 200,
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: softWhiteColor,
-                                      ),
-                                      child: Expanded(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CircularProgressIndicator(
-                                              color: softGreyColor,
-                                            ),
-                                            SizedBox(
-                                              height: 12,
-                                            ),
-                                            Text(
-                                              "Tunggu Driver Meninjau",
-                                              style: appTextTheme.bodyText2,
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                  : Column(
+                                      children: [
+                                        Lottie.asset('assets/driver.json',
+                                            width: 230),
+                                        Text("Menunggu Ditinjau Driver")
+                                      ],
                                     )
                               : InkWell(
                                   onTap: () {},
@@ -419,33 +401,12 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                                   )),
                                                 ),
                                         )
-                                      : Container(
-                                          height: 200,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            color: softWhiteColor,
-                                          ),
-                                          child: Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CircularProgressIndicator(
-                                                  color: softGreyColor,
-                                                ),
-                                                SizedBox(
-                                                  height: 12,
-                                                ),
-                                                Text(
-                                                  "Tunggu Driver Menjemput",
-                                                  style: appTextTheme.bodyText2,
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                                      : Column(
+                                          children: [
+                                            Lottie.asset('assets/driver.json',
+                                                width: 230),
+                                            Text("Menunggu Driver Menjemput")
+                                          ],
                                         )
                                   : InkWell(
                                       onTap: () {},
