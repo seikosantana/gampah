@@ -8,7 +8,7 @@ enum ResultState { loading, nodata, hashData, error }
 class TransactionProvider with ChangeNotifier {
   final TransactionsService transactionsService;
   TransactionProvider({required this.transactionsService}) {
-    _fetchAllData();
+    fetchAllData();
   }
   late List _transactions;
   late ResultState _state;
@@ -58,7 +58,7 @@ class TransactionProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> _fetchAllData() async {
+  Future<dynamic> fetchAllData() async {
     try {
       _state = ResultState.loading;
       notifyListeners();
