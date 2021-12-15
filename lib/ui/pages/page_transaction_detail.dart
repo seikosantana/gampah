@@ -67,6 +67,19 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
     );
   }
 
+  Color _colorOfStatus(String status) {
+    switch (status) {
+      case 'PENDING':
+        return yellowColor;
+      case 'DITINJAU':
+        return softGreyColor;
+      case 'DIJEMPUT':
+        return softGreenColor;
+      default:
+        return yellowColor;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     print(widget.transactionList.id);
@@ -148,7 +161,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           Row(
                             children: [
                               Chip(
-                                label: Text(transactionsDetail.status),
+                                label: Text(
+                                  transactionsDetail.status,
+                                  style: appTextTheme.caption!
+                                      .copyWith(color: whiteColor),
+                                ),
+                                backgroundColor:
+                                    _colorOfStatus(transactionsDetail.status),
                               )
                             ],
                           ),
