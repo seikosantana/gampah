@@ -26,7 +26,8 @@ class PageProfileState extends State<PageProfile> {
     handleLogout() async {
       bool result = await authProvider.logout();
       if (result) {
-        Navigator.pushReplacementNamed(context, LoginPage.routeName);
+        Navigator.pushNamedAndRemoveUntil(
+            context, LoginPage.routeName, (route) => false);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
