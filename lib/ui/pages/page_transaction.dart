@@ -29,6 +29,19 @@ class TransactionPage extends StatelessWidget {
     );
   }
 
+  Color _colorOfStatus(String status) {
+    switch (status) {
+      case 'PENDING':
+        return yellowColor;
+      case 'DITINJAU':
+        return softGreyColor;
+      case 'DIJEMPUT':
+        return softGreenColor;
+      default:
+        return yellowColor;
+    }
+  }
+
   Widget _cardTransaction(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel? user = authProvider.getUser;
@@ -53,7 +66,7 @@ class TransactionPage extends StatelessWidget {
                     date: transaction.created_at,
                     name: user!.name,
                     status: transaction.status,
-                    color: softGreenColor,
+                    color: _colorOfStatus(transaction.status),
                     address: transaction.address_detail,
                     argument: transaction,
                   );
