@@ -104,24 +104,39 @@ class _HomePageState extends State<HomePage> {
               builder: (context, value, child) {
                 return FutureBuilder(
                   builder: (context, snapshot) {
+                    Widget child;
                     if (snapshot.connectionState == ConnectionState.done) {
-                      return Row(
-                        children: [
-                          CardActivity(
-                              skala: compactFormat.format(value.pickUpCount),
-                              title: "Sampah\nterbuang"),
-                          CardActivity(
-                              skala:
-                                  compactFormat.format(value.contributorsCount),
-                              title: "Orang\nberkontribusi"),
-                          CardActivity(
-                              skala: compactFormat.format(value.driverCount),
-                              title: "Driver\nyang sigap"),
-                        ],
-                      );
+                      if (!snapshot.hasError) {
+                        child = Row(
+                          children: [
+                            CardActivity(
+                                skala: compactFormat.format(value.pickUpCount),
+                                title: "Sampah\nterbuang"),
+                            CardActivity(
+                                skala: compactFormat
+                                    .format(value.contributorsCount),
+                                title: "Orang\nberkontribusi"),
+                            CardActivity(
+                                skala: compactFormat.format(value.driverCount),
+                                title: "Driver\nyang sigap"),
+                          ],
+                        );
+                      } else {
+                        child = Text(
+                          value.errorMessage!,
+                          style: appTextTheme.bodyText1,
+                        );
+                      }
                     } else {
-                      return CircularProgressIndicator();
+                      child = Text(
+                        "Para kontributor gampah sedang apa ya?",
+                        style: appTextTheme.bodyText1,
+                      );
                     }
+                    return AnimatedSwitcher(
+                      duration: Duration(seconds: 1),
+                      child: child,
+                    );
                   },
                   future: value.dataLoad,
                 );
