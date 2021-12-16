@@ -10,6 +10,7 @@ import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/error/success_transaction.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:geolocator/geolocator.dart';
@@ -34,6 +35,8 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
     final imageTemporary = File(image.path);
     setState(() => this.image = imageTemporary);
   }
+
+  bool isLoading = false;
 
   Widget _toolbar() {
     return CustomToolbar(title: "Buat Transaksi");
@@ -89,10 +92,11 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
     );
   }
 
-  Widget _customButton(Function() handle) {
+  Widget _customButton(BuildContext context, Function() handle) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 24),
       height: 50,
+      width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: handle,
         style: ButtonStyle(
@@ -103,12 +107,16 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
             ),
           ),
         ),
-        child: Center(
-          child: Text(
-            "Laporkan",
-            style: appTextTheme.button,
-          ),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator(
+                color: whiteColor,
+              )
+            : Center(
+                child: Text(
+                  "Laporkan",
+                  style: appTextTheme.button,
+                ),
+              ),
       ),
     );
   }
@@ -148,6 +156,9 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel? user = authProvider.getUser;
     handleTransaction() async {
+      setState(() {
+        isLoading = true;
+      });
       Position? currentPosition =
           await determinePosition(locationNotEnabledCallback: () {
         Navigator.pushNamed(context, ErrorGpsPage.routeName);
@@ -177,6 +188,9 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
           ),
         );
       }
+      setState(() {
+        isLoading = false;
+      });
     }
 
     return Scaffold(
@@ -189,7 +203,7 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
               _toolbar(),
               _alertWarning(),
               _textField(context),
-              _customButton(handleTransaction),
+              _customButton(context, handleTransaction),
             ],
           ),
         ),
