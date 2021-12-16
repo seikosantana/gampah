@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/stats_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
@@ -11,6 +12,7 @@ import 'package:gampah_app/ui/pages/page_tutorial.dart';
 import 'package:gampah_app/ui/widgets/widget_card_about.dart';
 import 'package:gampah_app/ui/widgets/widget_card_activity.dart';
 import 'package:gampah_app/ui/widgets/widget_clip_path.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -87,6 +89,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  static var compactFormat = NumberFormat.compact(locale: "id")
+    ..maximumFractionDigits = 1
+    ..minimumIntegerDigits = 1;
+
   Widget _cardActivity(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -94,9 +100,36 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           children: [
-            CardActivity(skala: "12", title: "Sampah\nterbuang"),
-            CardActivity(skala: "80K", title: "Orang\nberkontribusi"),
-            CardActivity(skala: "200", title: "Driver\nyang sigap"),
+            Consumer<StatsProvider>(
+              builder: (context, value, child) {
+                return FutureBuilder(
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Row(
+                        children: [
+                          CardActivity(
+                              skala: compactFormat.format(value.pickUpCount),
+                              title: "Sampah\nterbuang"),
+                          CardActivity(
+                              skala:
+                                  compactFormat.format(value.contributorsCount),
+                              title: "Orang\nberkontribusi"),
+                          CardActivity(
+                              skala: compactFormat.format(value.driverCount),
+                              title: "Driver\nyang sigap"),
+                        ],
+                      );
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
+                  future: value.dataLoad,
+                );
+              },
+            ),
+            // CardActivity(skala: "12", title: "Sampah\nterbuang"),
+            // CardActivity(skala: "80K", title: "Orang\nberkontribusi"),
+            // CardActivity(skala: "200", title: "Driver\nyang sigap"),
           ],
         ),
       ),
