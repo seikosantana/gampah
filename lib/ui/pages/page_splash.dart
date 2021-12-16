@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
@@ -11,6 +9,7 @@ import 'package:splash_screen_view/SplashScreenView.dart';
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
   static const routeName = "/splash";
+
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
