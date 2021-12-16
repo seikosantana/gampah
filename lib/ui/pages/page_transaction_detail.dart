@@ -446,20 +446,18 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                     ),
                           transactionsDetail.finished_image == null
                               ? user.roles == 'DRIVER'
-                                  ? _customButton(() =>
-                                      //  image == null
-                                      //     ? ScaffoldMessenger.of(context)
-                                      //         .showSnackBar(
-                                      //         SnackBar(
-                                      //           backgroundColor: redColor,
-                                      //           content: Text(
-                                      //             'Ambil foto dulu!',
-                                      //             textAlign: TextAlign.center,
-                                      //           ),
-                                      //         ),
-                                      //       )
-                                      //     :
-                                      handleTransactions())
+                                  ? _customButton(() => image == null
+                                      ? ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                          SnackBar(
+                                            backgroundColor: redColor,
+                                            content: Text(
+                                              'Ambil foto dulu!',
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        )
+                                      : handleTransactions())
                                   : Container()
                               : Container(),
                         ],
