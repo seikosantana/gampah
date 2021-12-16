@@ -3,6 +3,7 @@ import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/success_register.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_drop_down.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/helper_functions.dart/extensions.dart';
@@ -24,11 +25,18 @@ class RegisterPageState extends State<RegisterPage> {
   TextEditingController phoneController = TextEditingController(text: '');
   TextEditingController emailController = TextEditingController(text: '');
   TextEditingController passwordController = TextEditingController(text: '');
+  bool isLoading = false;
+  Widget _btnLoading() {
+    return BtnLoading();
+  }
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     handleRegister() async {
+      setState(() {
+        isLoading = true;
+      });
       bool result = await authProvider.register(
         nameController.text,
         phoneController.text,
@@ -51,6 +59,9 @@ class RegisterPageState extends State<RegisterPage> {
           ),
         );
       }
+      setState(() {
+        isLoading = false;
+      });
     }
 
     return Scaffold(
@@ -157,18 +168,19 @@ class RegisterPageState extends State<RegisterPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: ElevatedButton(
-                        // TODO: Replace with Gampah-themed button
-                        onPressed: handleRegister,
-                        child: Text(
-                          "Daftar",
-                          style: appTextTheme.button,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 14),
-                          primary: softGreenColor,
-                        ),
-                      ),
+                      child: isLoading
+                          ? _btnLoading()
+                          : ElevatedButton(
+                              onPressed: handleRegister,
+                              child: Text(
+                                "Daftar",
+                                style: appTextTheme.button,
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(vertical: 14),
+                                primary: softGreenColor,
+                              ),
+                            ),
                     )
                   ],
                 ),

@@ -4,6 +4,7 @@ import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:gampah_app/ui/widgets/wiget_circular_image.dart';
@@ -19,11 +20,19 @@ class PageProfile extends StatefulWidget {
 }
 
 class PageProfileState extends State<PageProfile> {
+  bool isLoading = false;
+  Widget _btnLoading() {
+    return BtnLoading();
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel? user = authProvider.getUser;
     handleLogout() async {
+      setState(() {
+        isLoading = true;
+      });
       bool result = await authProvider.logout();
       if (result) {
         Navigator.pushNamedAndRemoveUntil(
@@ -39,6 +48,9 @@ class PageProfileState extends State<PageProfile> {
           ),
         );
       }
+      setState(() {
+        isLoading = false;
+      });
     }
 
     return Scaffold(
@@ -112,18 +124,20 @@ class PageProfileState extends State<PageProfile> {
                         Row(
                           children: [
                             Expanded(
-                              child: ElevatedButton(
-                                // TODO: Replace with Gampah-themed button
-                                onPressed: handleLogout,
-                                child: Text(
-                                  "Keluar",
-                                  style: appTextTheme.button,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(vertical: 14),
-                                  primary: softGreenColor,
-                                ),
-                              ),
+                              child: isLoading
+                                  ? _btnLoading()
+                                  : ElevatedButton(
+                                      onPressed: handleLogout,
+                                      child: Text(
+                                        "Keluar",
+                                        style: appTextTheme.button,
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 14),
+                                        primary: softGreenColor,
+                                      ),
+                                    ),
                             )
                           ],
                         ),

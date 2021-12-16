@@ -6,6 +6,7 @@ import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_register.dart';
 import 'package:gampah_app/ui/pages/page_transaction.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +22,7 @@ class LoginPage extends StatefulWidget {
 //TODO: Apply colors to icons and text
 class LoginPageState extends State<LoginPage> {
   bool isNotHold = true;
-
+  bool isLoading = false;
   TextEditingController emailController = TextEditingController(text: '');
   TextEditingController passwordController = TextEditingController(text: '');
   @override
@@ -29,6 +30,9 @@ class LoginPageState extends State<LoginPage> {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleLogin() async {
+      setState(() {
+        isLoading = true;
+      });
       bool result = await authProvider.login(
           emailController.text, passwordController.text);
       UserModel? user = authProvider.getUser;
@@ -52,6 +56,13 @@ class LoginPageState extends State<LoginPage> {
           ),
         );
       }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    Widget _btnLoading() {
+      return BtnLoading();
     }
 
     return Scaffold(
@@ -116,18 +127,19 @@ class LoginPageState extends State<LoginPage> {
               Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton(
-                      // TODO: Replace with Gampah-themed button
-                      onPressed: handleLogin,
-                      child: Text(
-                        "Masuk",
-                        style: appTextTheme.button,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 14),
-                        primary: softGreenColor,
-                      ),
-                    ),
+                    child: isLoading == true
+                        ? _btnLoading()
+                        : ElevatedButton(
+                            onPressed: handleLogin,
+                            child: Text(
+                              "Masuk",
+                              style: appTextTheme.button,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 14),
+                              primary: softGreenColor,
+                            ),
+                          ),
                   )
                 ],
               ),
