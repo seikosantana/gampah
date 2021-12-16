@@ -11,6 +11,7 @@ import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/error/success_transaction.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,6 +40,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
   }
 
   static var dateFormat = DateFormat("dd MMMM yyyy HH:mm");
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -50,6 +52,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 
   Widget _customButton(Function() handle) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       height: 50,
       child: ElevatedButton(
         onPressed: handle,
@@ -61,12 +64,16 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
             ),
           ),
         ),
-        child: Center(
-          child: Text(
-            "Perbaharui Tinjauan",
-            style: appTextTheme.button,
-          ),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator(
+                color: whiteColor,
+              )
+            : Center(
+                child: Text(
+                  "Perbaharui Tinjauan",
+                  style: appTextTheme.button,
+                ),
+              ),
       ),
     );
   }
@@ -130,6 +137,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                     print("Picked Image ${transactionsDetail.picked_image}");
 
                     handleTransactions() async {
+                      setState(() {
+                        isLoading = true;
+                      });
                       if (transactionsDetail.picked_image == null) {
                         path = "observation_img";
                       } else {
@@ -156,6 +166,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           ),
                         );
                       }
+                      setState(() {
+                        isLoading = false;
+                      });
                     }
 
                     return Padding(
@@ -433,7 +446,20 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                     ),
                           transactionsDetail.finished_image == null
                               ? user.roles == 'DRIVER'
-                                  ? _customButton(() => handleTransactions())
+                                  ? _customButton(() =>
+                                      //  image == null
+                                      //     ? ScaffoldMessenger.of(context)
+                                      //         .showSnackBar(
+                                      //         SnackBar(
+                                      //           backgroundColor: redColor,
+                                      //           content: Text(
+                                      //             'Ambil foto dulu!',
+                                      //             textAlign: TextAlign.center,
+                                      //           ),
+                                      //         ),
+                                      //       )
+                                      //     :
+                                      handleTransactions())
                                   : Container()
                               : Container(),
                         ],
