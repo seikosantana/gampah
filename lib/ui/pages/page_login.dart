@@ -38,6 +38,10 @@ class LoginPageState extends State<LoginPage> {
         SharedPreferences localStorage = await SharedPreferences.getInstance();
         localStorage.setString("token", user!.token);
         print(localStorage.getString("token"));
+        if (user.roles == 'DRIVER') {
+          return Navigator.pushReplacementNamed(
+              context, TransactionPage.routeName);
+        }
         return Navigator.pushReplacementNamed(context, HomePage.routeName);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
