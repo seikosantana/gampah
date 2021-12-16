@@ -3,6 +3,7 @@ import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/stats_provider.dart';
 import 'package:gampah_app/provider/transactions_provider.dart';
+import 'package:gampah_app/services/auth_services.dart';
 import 'package:gampah_app/services/stats_services.dart';
 import 'package:gampah_app/services/transactions_service.dart';
 import 'package:gampah_app/style/text_theme.dart';
@@ -50,7 +51,9 @@ class MyApp extends StatelessWidget {
         home: GetStartedPage(),
         initialRoute: SplashPage.routeName,
         routes: {
-          SplashPage.routeName: (context) => SplashPage(),
+          SplashPage.routeName: (context) => SplashPage(
+                authService: AuthService(),
+              ),
           GetStartedPage.routeName: (context) => GetStartedPage(),
           HomePage.routeName: (context) => HomePage(),
           LoginPage.routeName: (context) => LoginPage(),
