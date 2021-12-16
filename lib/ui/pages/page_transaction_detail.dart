@@ -14,6 +14,7 @@ import 'package:gampah_app/ui/error/success_transaction.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,8 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
     final imageTemporary = File(image.path);
     setState(() => this.image = imageTemporary);
   }
+
+  static var dateFormat = DateFormat("dd MMMM yyyy HH:mm");
 
   @override
   void initState() {
@@ -183,7 +186,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                               ),
                               Expanded(
                                 child: Text(
-                                  transactionsDetail.created_at,
+                                  dateFormat.format(DateTime.parse(
+                                    transactionsDetail.created_at,
+                                  ).toLocal()),
                                   style: appTextTheme.bodyText2!
                                       .copyWith(color: darkGreyColor),
                                 ),
@@ -207,7 +212,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                             .copyWith(color: darkGreyColor),
                                       )
                                     : Text(
-                                        transactionsDetail.updated_at,
+                                        dateFormat.format(DateTime.parse(
+                                          transactionsDetail.updated_at,
+                                        ).toLocal()),
                                         style: appTextTheme.bodyText2!
                                             .copyWith(color: darkGreyColor),
                                       ),
