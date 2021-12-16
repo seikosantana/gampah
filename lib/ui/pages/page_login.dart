@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
@@ -39,7 +40,9 @@ class LoginPageState extends State<LoginPage> {
       print(result);
 
       if (result) {
-        // SharedPreferences localStorage = await SharedPreferences.getInstance();
+        var transactionProviders =
+            Provider.of<TransactionProvider>(context, listen: false);
+        await transactionProviders.fetchAllData();
         if (user!.roles == 'DRIVER') {
           return Navigator.pushReplacementNamed(
               context, TransactionPage.routeName);
