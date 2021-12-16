@@ -29,5 +29,15 @@ class StatServices {
     return count;
   }
 
-  Future<int?> getFinishedTransactions() async {}
+  Future<int?> getFinishedTransactions() async {
+    int? count;
+    try {
+      var response = await http.get(Uri.parse("$baseUrl/pickups"));
+      Map<String, dynamic> body = jsonDecode(response.body);
+      count = body["data"]["count"];
+    } catch (err) {
+      throw Exception("Something went wrong in getting pickup statistics");
+    }
+    return count;
+  }
 }
