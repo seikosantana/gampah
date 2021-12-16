@@ -19,14 +19,17 @@ class StatsProvider with ChangeNotifier {
     Future<int?> getPickupFuture = statServices.getFinishedTransactions();
     dataLoad =
         Future.wait([getContributorFuture, getDriverFuture, getPickupFuture])
-            .then((List<int?> value) {
+            .then((List<int?> value) async {
       contributorsCount = value[0];
       driverCount = value[1];
       pickUpCount = value[2];
+      await Future.delayed(Duration(seconds: 3));
       notifyListeners();
     }).catchError((err) {
-      errorMessage = "Unable to get statistics";
+      errorMessage =
+          "Kami tidak tau statistiknya seperti apa, tapi para kontributor gampah sedang menyelamatkan bumi :D";
       notifyListeners();
+      throw Exception(errorMessage);
     });
   }
 }
