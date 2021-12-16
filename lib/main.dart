@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/stats_provider.dart';
 import 'package:gampah_app/provider/transactions_provider.dart';
+import 'package:gampah_app/services/stats_services.dart';
 import 'package:gampah_app/services/transactions_service.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) =>
               TransactionProvider(transactionsService: TransactionsService()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StatsProvider(statServices: StatServices()),
         ),
       ],
       child: MaterialApp(
