@@ -74,9 +74,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
   Color _colorOfStatus(String status) {
     switch (status) {
       case 'PENDING':
-        return yellowColor;
-      case 'DITINJAU':
         return softGreyColor;
+      case 'DITINJAU':
+        return yellowColor;
       case 'DIJEMPUT':
         return softGreenColor;
       default:
