@@ -67,6 +67,11 @@ class AuthService {
     }
   }
 
+  Future<bool> hasSavedToken() async {
+    var prefs = await SharedPreferences.getInstance();
+    return prefs.containsKey("last_token");
+  }
+
   Future<bool> validateToken(String token) async {
     var response = await http.get(
       Uri.parse("$base_url/profile"),
