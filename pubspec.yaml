@@ -54,6 +54,7 @@ dependencies:
   http: ^0.13.4
   #for saved in local storage with shared preference
   shared_preferences: ^2.0.9
+  intl: ^0.17.0
   
   
 dev_dependencies:
