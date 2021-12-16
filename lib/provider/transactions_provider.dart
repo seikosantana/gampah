@@ -3,7 +3,7 @@ import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/models/model_transactions_detail.dart';
 import 'package:gampah_app/services/transactions_service.dart';
 
-enum ResultState { loading, nodata, hashData, error }
+enum ResultState { loading, nodata, hasData, error }
 
 class TransactionProvider with ChangeNotifier {
   final TransactionsService transactionsService;
@@ -70,7 +70,7 @@ class TransactionProvider with ChangeNotifier {
         return _message =
             "Transaksimu masih kosong\nayo buat transaksi untuk hijaukan Bumi!";
       } else {
-        _state = ResultState.hashData;
+        _state = ResultState.hasData;
         notifyListeners();
         return _transactions = result.transactionsList;
       }
@@ -94,7 +94,7 @@ class TransactionProvider with ChangeNotifier {
         notifyListeners();
         return _message = "Tidak ada data yang tersedia dalam sistem";
       } else {
-        _state = ResultState.hashData;
+        _state = ResultState.hasData;
         notifyListeners();
         return _transactionsDetail =
             transactionsDetailResult.transactionDetailData;

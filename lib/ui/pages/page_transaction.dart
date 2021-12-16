@@ -55,7 +55,7 @@ class TransactionPage extends StatelessWidget {
                   color: darkGreenColor,
                 ),
               );
-            } else if (state.state == ResultState.hashData) {
+            } else if (state.state == ResultState.hasData) {
               return ListView.builder(
                 shrinkWrap: true,
                 primary: false,

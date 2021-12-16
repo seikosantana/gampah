@@ -118,7 +118,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                     return CircularProgressIndicator(
                       color: darkGreenColor,
                     );
-                  } else if (state.state == ResultState.hashData &&
+                  } else if (state.state == ResultState.hasData &&
                       state.transactionsDetail != null) {
                     final transactionsDetail = state.transactionsDetail;
                     var path;
