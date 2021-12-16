@@ -17,6 +17,17 @@ class StatServices {
     return count;
   }
 
-  Future<int?> getContributors() async {}
+  Future<int?> getContributors() async {
+    int? count;
+    try {
+      var response = await http.get(Uri.parse("$baseUrl/contributors"));
+      Map<String, dynamic> body = jsonDecode(response.body);
+      count = body["data"]["count"];
+    } catch (err) {
+      throw Exception("Something went wrong in getting contributor statistics");
+    }
+    return count;
+  }
+
   Future<int?> getFinishedTransactions() async {}
 }
