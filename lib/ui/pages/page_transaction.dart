@@ -6,6 +6,7 @@ import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/widgets/widget_card_item_transaction.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TransactionPage extends StatelessWidget {
@@ -42,6 +43,8 @@ class TransactionPage extends StatelessWidget {
     }
   }
 
+  static var dateFormat = DateFormat("dd MMMM yyyy hh:mm");
+
   Widget _cardTransaction(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel? user = authProvider.getUser;
@@ -63,7 +66,8 @@ class TransactionPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var transaction = state.transactions[index];
                   return CardTransaction(
-                    date: transaction.created_at,
+                    date: dateFormat.format(
+                        DateTime.parse(transaction.created_at).toLocal()),
                     name: user!.name,
                     status: transaction.status,
                     color: _colorOfStatus(transaction.status),
