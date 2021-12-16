@@ -9,7 +9,9 @@ class StatsProvider with ChangeNotifier {
   String? errorMessage;
   StatServices statServices;
 
-  StatsProvider({required this.statServices});
+  StatsProvider({required this.statServices}) {
+    getStats();
+  }
 
   void getStats() {
     Future<int?> getDriverFuture = statServices.getDriversCount();
