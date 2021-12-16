@@ -110,14 +110,14 @@ class _HomePageState extends State<HomePage> {
                         child = Row(
                           children: [
                             CardActivity(
-                                skala: compactFormat.format(value.pickUpCount),
+                                value: compactFormat.format(value.pickUpCount),
                                 title: "Sampah\nterbuang"),
                             CardActivity(
-                                skala: compactFormat
+                                value: compactFormat
                                     .format(value.contributorsCount),
                                 title: "Orang\nberkontribusi"),
                             CardActivity(
-                                skala: compactFormat.format(value.driverCount),
+                                value: compactFormat.format(value.driverCount),
                                 title: "Driver\nyang sigap"),
                           ],
                         );
