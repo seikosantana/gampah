@@ -60,7 +60,7 @@ class AuthService {
       UserModel user = UserModel.fromJson(data['user']);
       user.token = 'Bearer ' + data['access_token'];
       var prefs = await SharedPreferences.getInstance();
-      await prefs.setString("last_token", user.token);
+      await prefs.setString("token", user.token);
       return user;
     } else {
       throw Exception("Gagal Login");
@@ -69,7 +69,38 @@ class AuthService {
 
   Future<bool> hasSavedToken() async {
     var prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey("last_token");
+    return prefs.containsKey("token");
+  }
+
+  Future<UserModel?> getUser() async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey("token")) {
+      var token = prefs.getString("token");
+      var response = await http.get(
+        Uri.parse("$base_url/profile"),
+        headers: {
+          "Authorization": token!,
+        },
+      );
+      if (response.statusCode == 200) {
+        try {
+          var body = jsonDecode(response.body);
+          UserModel user = UserModel.fromJson(body["data"]);
+          return user;
+        } catch (err) {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  Future<bool> isFirstTimeUser() async {
+    var prefs = await SharedPreferences.getInstance();
+    return !prefs.containsKey("is_first");
   }
 
   Future<bool> validateToken(String token) async {
@@ -87,8 +118,8 @@ class AuthService {
   }
 
   Future<bool> logoutUser() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var token = await localStorage.getString("token").toString();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = await prefs.getString("token").toString();
     var url = "$base_url/$logout";
     var header = {
       'Content-Type': 'application/json',
@@ -97,7 +128,7 @@ class AuthService {
     };
     var response = await http.post(Uri.parse(url), headers: header);
     if (response.statusCode == 200) {
-      await localStorage.remove("token");
+      await prefs.remove("token");
       return true;
     } else {
       throw Exception("Gagal Logout");
