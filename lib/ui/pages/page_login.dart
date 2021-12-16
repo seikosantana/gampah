@@ -39,7 +39,7 @@ class LoginPageState extends State<LoginPage> {
       print(result);
 
       if (result) {
-        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        // SharedPreferences localStorage = await SharedPreferences.getInstance();
         if (user!.roles == 'DRIVER') {
           return Navigator.pushReplacementNamed(
               context, TransactionPage.routeName);
