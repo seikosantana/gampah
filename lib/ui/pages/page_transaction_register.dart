@@ -159,24 +159,27 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
       setState(() {
         isLoading = true;
       });
-      Position? currentPosition =
-          await determinePosition(locationNotEnabledCallback: () {
-        Navigator.pushNamed(context, ErrorGpsPage.routeName);
-      }, permissionDeniedCallback: () {
-        Navigator.pushNamed(context, ErrorPage.routeName);
-      });
-      bool result = await transactionProvider.addTransaction(
-          user!.id,
-          addressController.text,
-          "success",
-          currentPosition!.latitude,
-          currentPosition.longitude,
-          image!.path);
-      print(currentPosition);
-      if (result) {
-        transactionProvider.fetchAllData();
-        return Navigator.pushReplacementNamed(
-            context, TransactionSuccess.routeName);
+      if (image != null) {
+        Position? currentPosition =
+            await determinePosition(locationNotEnabledCallback: () {
+          Navigator.pushNamed(context, ErrorGpsPage.routeName);
+        }, permissionDeniedCallback: () {
+          Navigator.pushNamed(context, ErrorPage.routeName);
+        });
+        bool result = await transactionProvider.addTransaction(
+            user!.id,
+            addressController.text,
+            "success",
+            currentPosition!.latitude,
+            currentPosition.longitude,
+            image!.path);
+
+        print(currentPosition);
+        if (result) {
+          transactionProvider.fetchAllData();
+          return Navigator.pushReplacementNamed(
+              context, TransactionSuccess.routeName);
+        }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
