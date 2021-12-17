@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
@@ -35,6 +36,9 @@ class PageProfileState extends State<PageProfile> {
       });
       bool result = await authProvider.logout();
       if (result) {
+        var transactionProviders =
+            Provider.of<TransactionProvider>(context, listen: false);
+        transactionProviders.stopMonitorTransaction();
         Navigator.pushNamedAndRemoveUntil(
             context, LoginPage.routeName, (route) => false);
       } else {
