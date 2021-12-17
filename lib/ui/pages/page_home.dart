@@ -268,7 +268,8 @@ class _HomePageState extends State<HomePage> {
     UserModel? user = authProvider.getUser;
     return Scaffold(
       extendBody: true,
-      floatingActionButton: _floatingActionButton(),
+      floatingActionButton:
+          user!.roles == 'DRIVER' ? Container() : _floatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _bottomNavigation(),
       body: SafeArea(
