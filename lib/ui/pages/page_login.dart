@@ -43,6 +43,11 @@ class LoginPageState extends State<LoginPage> {
         var transactionProviders =
             Provider.of<TransactionProvider>(context, listen: false);
         await transactionProviders.fetchAllData();
+        if (user!.roles == 'DRIVER') {
+          transactionProviders.startMonitorTransaction();
+          return Navigator.pushReplacementNamed(
+              context, TransactionPage.routeName);
+        }
         return Navigator.pushReplacementNamed(context, HomePage.routeName);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

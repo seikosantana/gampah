@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/models/model_transactions_detail.dart';
@@ -7,18 +9,40 @@ enum ResultState { loading, nodata, hasData, error }
 
 class TransactionProvider with ChangeNotifier {
   final TransactionsService transactionsService;
-  TransactionProvider({required this.transactionsService}) {
+  TransactionProvider(
+      {required this.transactionsService,
+      required this.newTransactionCallback}) {
     fetchAllData();
   }
   late List _transactions;
   late ResultState _state;
   String _message = '';
+  Future Function() newTransactionCallback;
   var _transactionsDetail = null;
 
   TransactionDetailData? get transactionsDetail => _transactionsDetail;
   List get transactions => _transactions;
   ResultState get state => _state;
   String get message => _message;
+
+  Timer? monitorTimer;
+
+  void startMonitorTransaction() {
+    monitorTimer = Timer.periodic(Duration(seconds: 5), (t) async {
+      try {
+        final newList = await transactionsService.allTransactionsByToken();
+        if ((transactions ?? []).length != newList.transactionsList.length) {
+          newTransactionCallback();
+        }
+      } catch (err) {
+        print(err);
+      }
+    });
+  }
+
+  void stopMonitorTransaction() {
+    monitorTimer?.cancel();
+  }
 
   Future<bool> addTransaction(
     int reporterId,

@@ -38,8 +38,11 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) =>
-              TransactionProvider(transactionsService: TransactionsService()),
+          create: (_) => TransactionProvider(
+              transactionsService: TransactionsService(),
+              newTransactionCallback: () async {
+                // TODO: Implement show notification here
+              }),
         ),
         ChangeNotifierProvider(
           create: (context) => StatsProvider(statServices: StatServices()),
