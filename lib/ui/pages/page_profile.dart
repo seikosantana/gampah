@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/services/stats_services.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
@@ -23,6 +24,85 @@ class PageProfileState extends State<PageProfile> {
   bool isLoading = false;
   Widget _btnLoading() {
     return BtnLoading();
+  }
+
+  StatServices statServices = StatServices();
+
+  _rewardContribution(String role, int id) {
+    return InkWell(
+      onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: redColor,
+          content: Text(
+            'Sementara Hadiah Belum Dapat Dicairkan!',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+      child: Container(
+        margin: EdgeInsets.only(left: 24),
+        child: FutureBuilder<double?>(
+          future: statServices.getRewardUser(role, id),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Hadiah Kontribusi"),
+                  Row(
+                    children: [
+                      Text(
+                        "${snapshot.data}",
+                        style: appTextTheme.bodyText1!
+                            .copyWith(color: darkGreyColor),
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Text(
+                        "BTC",
+                        style: appTextTheme.bodyText2!
+                            .copyWith(color: softGreyColor),
+                      ),
+                      Image.asset(
+                        "assets/btc.png",
+                        width: 25,
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Hadiah Kontribusi"),
+                  Row(
+                    children: [
+                      CircularProgressIndicator(
+                        color: darkGreenColor,
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Text(
+                        "BTC",
+                        style: appTextTheme.bodyText2!
+                            .copyWith(color: softGreyColor),
+                      ),
+                      Image.asset(
+                        "assets/btc.png",
+                        width: 25,
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            }
+          },
+        ),
+      ),
+    );
   }
 
   @override
@@ -53,6 +133,30 @@ class PageProfileState extends State<PageProfile> {
       });
     }
 
+    Widget _profile() {
+      return Column(
+        children: [
+          CircularImage(
+            image: AssetImage("assets/image_profile.png"),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Chip(
+            label: Text(
+              user!.roles,
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: softGreenColor,
+            padding: EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 16,
+            ),
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -60,31 +164,14 @@ class PageProfileState extends State<PageProfile> {
             child: Expanded(
               child: Column(
                 children: [
-                  CustomToolbar(
-                    title: "Profil",
-                  ),
                   SizedBox(
-                    height: 48,
+                    height: 16,
                   ),
-                  CircularImage(
-                    image: AssetImage("assets/image_profile.png"),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Chip(
-                    label: Text(
-                      user!.roles,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    backgroundColor: softGreenColor,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 4,
-                      horizontal: 16,
-                    ),
-                  ),
+                  _rewardContribution(user!.roles, user.id),
+                  SizedBox(height: 16),
+                  _profile(),
                   Padding(
-                    padding: EdgeInsets.all(24),
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
                     child: Column(
                       children: [
                         GampahTextField(
