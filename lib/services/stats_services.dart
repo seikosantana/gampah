@@ -40,4 +40,18 @@ class StatServices {
     }
     return count;
   }
+
+  Future<double?> getRewardUser(String role, int id) async {
+    double? reward;
+    try {
+      var response = role == 'DRIVER'
+          ? await http.get(Uri.parse("$baseUrl/reward/$id/driver"))
+          : await http.get(Uri.parse("$baseUrl/reward/$id/reporter"));
+      Map<String, dynamic> body = jsonDecode(response.body);
+      reward = body["data"]["reward"];
+    } catch (err) {
+      throw Exception("Something wrong in getting the reward");
+    }
+    return reward;
+  }
 }
