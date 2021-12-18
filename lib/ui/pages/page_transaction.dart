@@ -68,7 +68,8 @@ class TransactionPage extends StatelessWidget {
                   return CardTransaction(
                     date: dateFormat.format(
                         DateTime.parse(transaction.created_at).toLocal()),
-                    name: user!.name,
+                    name:
+                        "${user!.name[0].toUpperCase()}${user.name.substring(1)}",
                     status: transaction.status,
                     color: _colorOfStatus(transaction.status),
                     address: transaction.address_detail,
