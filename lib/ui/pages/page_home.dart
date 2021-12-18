@@ -128,9 +128,11 @@ class _HomePageState extends State<HomePage> {
                         );
                       }
                     } else {
-                      child = Text(
-                        "Para kontributor gampah sedang apa ya?",
-                        style: appTextTheme.bodyText1,
+                      child = Container(
+                        margin: EdgeInsets.symmetric(horizontal: 150),
+                        child: CircularProgressIndicator(
+                          color: darkGreenColor,
+                        ),
                       );
                     }
                     return AnimatedSwitcher(
@@ -282,7 +284,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   _clipPath(context),
                   _header(
-                      "${user!.name[0].toUpperCase()}${user.name.substring(1)}"),
+                      "${user.name[0].toUpperCase()}${user.name.substring(1)}"),
                   _titleActivity()
                 ],
               ),
