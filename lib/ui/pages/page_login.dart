@@ -45,8 +45,8 @@ class LoginPageState extends State<LoginPage> {
         await transactionProviders.fetchAllData();
         if (user!.roles == 'DRIVER') {
           transactionProviders.startMonitorTransaction();
-          return Navigator.pushReplacementNamed(
-              context, TransactionPage.routeName);
+          // return Navigator.pushReplacementNamed(
+          //     context, TransactionPage.routeName);
         }
         return Navigator.pushReplacementNamed(context, HomePage.routeName);
       } else {
