@@ -16,7 +16,7 @@ class NotificationHelper {
   Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var initializationSettingsAndroid =
-        AndroidInitializationSettings('logo_gampah_2.png');
+        AndroidInitializationSettings('logo_gampah_2');
 
     var initializationSettingsIOS = IOSInitializationSettings(
       requestAlertPermission: false,
