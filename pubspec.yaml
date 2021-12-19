@@ -54,8 +54,12 @@ dependencies:
   http: ^0.13.4
   #for saved in local storage with shared preference
   shared_preferences: ^2.0.9
+  #for formating date
   intl: ^0.17.0
-  
+  #for local notification
+  flutter_local_notifications: ^9.1.5
+  #for handle notification
+  rxdart: ^0.27.3
   
 dev_dependencies:
   flutter_test:
