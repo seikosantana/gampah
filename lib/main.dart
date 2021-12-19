@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gampah_app/helper/helper_notification.dart';
 import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/stats_provider.dart';
@@ -25,7 +29,15 @@ import 'package:gampah_app/ui/pages/page_transaction_register.dart';
 import 'package:gampah_app/ui/pages/page_tutorial.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(TestPage());
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+final NotificationHelper notificationHelper = NotificationHelper();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final NotificationHelper notificationHelper = NotificationHelper();
+  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+  runApp(TestPage());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -41,7 +53,8 @@ class MyApp extends StatelessWidget {
           create: (_) => TransactionProvider(
               transactionsService: TransactionsService(),
               newTransactionCallback: () async {
-                // TODO: Implement show notification here
+                await notificationHelper
+                    .showNotification(flutterLocalNotificationsPlugin);
               }),
         ),
         ChangeNotifierProvider(
@@ -53,6 +66,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(textTheme: appTextTheme),
         home: GetStartedPage(),
         initialRoute: SplashPage.routeName,
+        navigatorKey: navigatorKey,
         routes: {
           SplashPage.routeName: (context) => SplashPage(
                 authService: AuthService(),
