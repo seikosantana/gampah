@@ -32,11 +32,8 @@ class SplashPage extends StatelessWidget {
         AuthProvider authProvider =
             Provider.of<AuthProvider>(context, listen: false);
         authProvider.user = user;
-        if (user.roles == "DRIVER") {
-          nextPage = TransactionPage();
-        } else {
-          nextPage = HomePage();
-        }
+
+        nextPage = HomePage();
       }
     }
   }
