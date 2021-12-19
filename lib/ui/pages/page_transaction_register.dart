@@ -135,14 +135,14 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
         children: [
           Icon(
             Icons.info_outline,
-            color: darkGreyColor,
+            color: softGreyColor,
           ),
           SizedBox(
             width: 16,
           ),
           Text(
             "Lokasi anda sudah direkam",
-            style: appTextTheme.bodyText1!.copyWith(color: darkGreyColor),
+            style: appTextTheme.bodyText1!.copyWith(color: softGreyColor),
           ),
         ],
       ),
