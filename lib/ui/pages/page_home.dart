@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gampah_app/helper/helper_notification.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/stats_provider.dart';
@@ -24,6 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
   int currentIndex = 0;
   Widget _clipPath(BuildContext context) {
     return ClipPath(
@@ -295,5 +297,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper.configureSelectNotificationSubject();
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 }
