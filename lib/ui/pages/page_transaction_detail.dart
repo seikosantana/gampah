@@ -91,6 +91,19 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
     }
   }
 
+  Widget imageDetailOfDialog(String? image) {
+    return Container(
+      height: 300,
+      width: 250,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: NetworkImage(
+              "https://shamo.tanpabatasgroup.com/storage/uploads/$image"),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print(widget.transactionList.id);
@@ -266,7 +279,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                             height: 12,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (_) => imageDetailOfDialog(
+                                    transactionsDetail.report_image),
+                              );
+                            },
                             child: Container(
                               height: 200,
                               width: MediaQuery.of(context).size.width,
@@ -343,7 +362,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                       ],
                                     )
                               : InkWell(
-                                  onTap: () {},
+                                  onTap: () async {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (_) => imageDetailOfDialog(
+                                          transactionsDetail.picked_image),
+                                    );
+                                  },
                                   child: Container(
                                     height: 200,
                                     width: MediaQuery.of(context).size.width,
@@ -429,7 +454,14 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                           ],
                                         )
                                   : InkWell(
-                                      onTap: () {},
+                                      onTap: () async {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (_) => imageDetailOfDialog(
+                                              transactionsDetail
+                                                  .finished_image),
+                                        );
+                                      },
                                       child: Container(
                                         height: 200,
                                         width:
