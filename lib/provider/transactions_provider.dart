@@ -33,6 +33,7 @@ class TransactionProvider with ChangeNotifier {
         final newList = await transactionsService.allTransactionsByToken();
         if ((transactions ?? []).length != newList.transactionsList.length) {
           newTransactionCallback();
+          stopMonitorTransaction();
         }
       } catch (err) {
         print(err);
