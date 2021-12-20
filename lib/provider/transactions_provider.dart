@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/models/model_transactions_detail.dart';
 import 'package:gampah_app/services/transactions_service.dart';
 
@@ -31,9 +30,11 @@ class TransactionProvider with ChangeNotifier {
     monitorTimer = Timer.periodic(Duration(seconds: 5), (t) async {
       try {
         final newList = await transactionsService.allTransactionsByToken();
-        if ((transactions ?? []).length != newList.transactionsList.length) {
-          newTransactionCallback();
-          stopMonitorTransaction();
+        if (transactions != null && transactions.length != 0) {
+          if (transactions.length != newList.transactionsList.length) {
+            newTransactionCallback();
+            _transactions = newList.transactionsList;
+          }
         }
       } catch (err) {
         print(err);
