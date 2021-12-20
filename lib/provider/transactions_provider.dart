@@ -27,6 +27,7 @@ class TransactionProvider with ChangeNotifier {
   Timer? monitorTimer;
 
   void startMonitorTransaction() {
+    monitorTimer?.cancel();
     monitorTimer = Timer.periodic(Duration(seconds: 5), (t) async {
       try {
         final newList = await transactionsService.allTransactionsByToken();
@@ -44,6 +45,7 @@ class TransactionProvider with ChangeNotifier {
 
   void stopMonitorTransaction() {
     monitorTimer?.cancel();
+    monitorTimer = null;
   }
 
   Future<bool> addTransaction(
