@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/widgets/error/widget_alert_error.dart';
 
 class TransactionSuccess extends StatelessWidget {

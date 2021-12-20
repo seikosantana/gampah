@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
@@ -11,13 +13,14 @@ import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   static const routeName = "/register";
+
+  const RegisterPage({Key? key}) : super(key: key);
   @override
   RegisterPageState createState() {
     return RegisterPageState();
   }
 }
 
-//TODO: Apply colors to icons and text
 class RegisterPageState extends State<RegisterPage> {
   String registerAs = "PENGGUNA";
   bool isNotHold = true;
@@ -44,7 +47,6 @@ class RegisterPageState extends State<RegisterPage> {
         registerAs,
         passwordController.text,
       );
-      print(result);
       if (result) {
         return Navigator.pushReplacementNamed(
             context, RegisterSuccess.routeName);
@@ -98,7 +100,6 @@ class RegisterPageState extends State<RegisterPage> {
                   height: 24,
                 ),
                 GampahTextField(
-                  // TODO: Allow only number input
                   labelText: "Nomor HP",
                   prefix: Container(
                     child: Text("+62"),
@@ -142,7 +143,6 @@ class RegisterPageState extends State<RegisterPage> {
                   height: 24,
                 ),
                 GampahTextField(
-                  //TODO: Implement visibility toggle
                   labelText: "Password",
                   maskText: isNotHold,
                   prefix: Icon(

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:gampah_app/helper/helper_notification.dart';
 import 'package:gampah_app/models/model_user.dart';

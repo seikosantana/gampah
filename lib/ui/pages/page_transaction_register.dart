@@ -10,7 +10,6 @@ import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/error/error.dart';
 import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/error/success_transaction.dart';
-import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:geolocator/geolocator.dart';
@@ -174,7 +173,6 @@ class _RegisterTransactionState extends State<RegisterTransaction> {
             currentPosition.longitude,
             image!.path);
 
-        print(currentPosition);
         if (result) {
           transactionProvider.fetchAllData();
           return Navigator.pushReplacementNamed(

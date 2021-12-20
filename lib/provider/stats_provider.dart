@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/services/stats_services.dart';
 
 class StatsProvider with ChangeNotifier {

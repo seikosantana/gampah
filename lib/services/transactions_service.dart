@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables
+
 import 'dart:convert';
 
 import 'package:gampah_app/models/model_transactions.dart';
@@ -22,14 +24,14 @@ class TransactionsService {
     String image,
   ) async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var token = await localStorage.getString("token").toString();
+    var token = localStorage.getString("token").toString();
     var url = "$base_url$transactions";
     var header = {
       'Content-Type': 'application/json',
       'Charset': 'utf-8',
       'Authorization': token
     };
-    var request = await http.MultipartRequest('POST', Uri.parse(url));
+    var request = http.MultipartRequest('POST', Uri.parse(url));
     request.headers.addAll(header);
     request.fields['reporter_id'] = reporterId.toString();
     request.fields['address_detail'] = addressDetail;
@@ -54,7 +56,7 @@ class TransactionsService {
 
   Future<Map<String, dynamic>> updateTransaction(id, path, String image) async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var token = await localStorage.getString("token").toString();
+    var token = localStorage.getString("token").toString();
     var url;
     if (path == 'observation_img') {
       url = '$base_url$update$id$observation';
@@ -66,7 +68,7 @@ class TransactionsService {
       'Charset': 'utf-8',
       'Authorization': token
     };
-    var request = await http.MultipartRequest('POST', Uri.parse(url));
+    var request = http.MultipartRequest('POST', Uri.parse(url));
     request.headers.addAll(header);
     request.files.add(await http.MultipartFile.fromPath('$path', image));
     var responseServer = await request.send();
@@ -85,7 +87,7 @@ class TransactionsService {
 
   Future<Transactions> allTransactionsByToken() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var token = await localStorage.getString("token").toString();
+    var token = localStorage.getString("token").toString();
     String url = "$base_url$listTransactions";
     var headers = {
       'Accept': 'application/json',
@@ -102,7 +104,7 @@ class TransactionsService {
 
   Future<TransactionsDetail> getTransactionDetail(id) async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var token = await localStorage.getString("token").toString();
+    var token = localStorage.getString("token").toString();
     String url = "$base_url$listTransactions$id$detail";
     var headers = {
       'Accept': 'application/json',

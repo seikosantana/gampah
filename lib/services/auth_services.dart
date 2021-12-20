@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:gampah_app/models/model_user.dart';
@@ -119,7 +121,7 @@ class AuthService {
 
   Future<bool> logoutUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = await prefs.getString("token").toString();
+    var token = prefs.getString("token").toString();
     var url = "$base_url/$logout";
     var header = {
       'Content-Type': 'application/json',

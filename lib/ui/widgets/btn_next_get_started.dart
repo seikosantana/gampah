@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
-import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

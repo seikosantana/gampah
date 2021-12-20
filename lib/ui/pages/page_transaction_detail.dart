@@ -1,19 +1,16 @@
+// ignore_for_file: use_key_in_widget_constructors, sized_box_for_whitespace, prefer_typing_uninitialized_variables
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gampah_app/helper_functions.dart/geolocation.dart';
 import 'package:gampah_app/models/model_transactions.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
-import 'package:gampah_app/ui/error/error.dart';
-import 'package:gampah_app/ui/error/error_gps.dart';
 import 'package:gampah_app/ui/error/success_transaction.dart';
-import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -106,7 +103,6 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.transactionList.id);
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context);
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -121,8 +117,6 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                   MapsLauncher.launchCoordinates(
                       double.parse(widget.transactionList.latitude),
                       double.parse(widget.transactionList.longitude));
-                  print(
-                      "untuk melihat current posisiton ${widget.transactionList.latitude},${widget.transactionList.longitude},");
                 }
               },
               backgroundColor: darkGreenColor,
@@ -145,15 +139,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       state.transactionsDetail != null) {
                     final transactionsDetail = state.transactionsDetail;
                     var path;
-                    print("instanse Of $transactionsDetail");
-                    print("Report Image ${transactionsDetail!.report_image}");
-                    print("Picked Image ${transactionsDetail.picked_image}");
-
                     handleTransactions() async {
                       setState(() {
                         isLoading = true;
                       });
-                      if (transactionsDetail.picked_image == null) {
+                      if (transactionsDetail!.picked_image == null) {
                         path = "observation_img";
                       } else {
                         path = "cleanup_img";
@@ -192,7 +182,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                             children: [
                               Chip(
                                 label: Text(
-                                  transactionsDetail.status,
+                                  transactionsDetail!.status,
                                   style: appTextTheme.caption!
                                       .copyWith(color: whiteColor),
                                 ),

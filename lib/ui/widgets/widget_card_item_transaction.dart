@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
-import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/pages/page_transaction_detail.dart';
 
 class CardTransaction extends StatelessWidget {

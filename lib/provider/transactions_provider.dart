@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_init_to_null, unnecessary_null_comparison, prefer_is_empty, avoid_print
+
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';

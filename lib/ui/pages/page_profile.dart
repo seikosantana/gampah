@@ -7,12 +7,13 @@ import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
 import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
-import 'package:gampah_app/ui/widgets/widget_toolbar.dart';
 import 'package:gampah_app/ui/widgets/wiget_circular_image.dart';
 import 'package:provider/provider.dart';
 
 class PageProfile extends StatefulWidget {
   static const routeName = "/profile";
+
+  const PageProfile({Key? key}) : super(key: key);
 
   @override
   PageProfileState createState() {
