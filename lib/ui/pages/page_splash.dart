@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/models/model_user.dart';
 import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/services/auth_services.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/ui/pages/page_get_started.dart';
@@ -34,6 +35,9 @@ class SplashPage extends StatelessWidget {
         authProvider.user = user;
 
         nextPage = HomePage();
+        TransactionProvider transactionProvider =
+            Provider.of<TransactionProvider>(context, listen: false);
+        transactionProvider.startMonitorTransaction();
       }
     }
   }
