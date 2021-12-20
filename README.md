@@ -1,13 +1,12 @@
 # Gampah
 
+<!-- markdownlint-disable -->
 <p align="center">
     <img width="150px" src=https://raw.githubusercontent.com/seikosantana/gampah/master/Gampah%20Logo.png>
 </p>
-
 <p align="center">
     Sampah? Gampang mah!
 </p>
-
 <hr/>
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-green.svg?style=flat-square)](#contributors-)
@@ -31,6 +30,8 @@
       - [Jalankan aplikasi Gampah](#jalankan-aplikasi-gampah)
   - [Resource yang dipakai](#resource-yang-dipakai)
   - [Library Pihak Ketiga](#library-pihak-ketiga)
+  - [Screenshot Tampilan Aplikasi](#screenshot-tampilan-aplikasi)
+  - [Creator](#creator)
   - [Didukung Oleh](#didukung-oleh)
 
 ## Apa itu Gampah?
@@ -134,6 +135,31 @@ flutter run
 - [Intl](https://pub.dev/packages/intl) - Mempermudah memformat dan menampilkan data angka dan tanggal dalam bentuk yang lebih manusiawi
 - [Flutter Local Notification](https://pub.dev/packages/flutter_local_notifications) - Untuk menampilkan push notification secara lokal
 - [Rx Dart](https://pub.dev/packages/rxdart) - Untuk merespon tindakan dari push notification.
+
+## Screenshot Tampilan Aplikasi
+
+| Splash | Home Page | Tutorial |
+| ----------- | ----------- | -------- |
+| ![splash](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_1.png) | ![home](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_2.png) | ![Tutorial](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_6.png) |
+
+| Transaksi | Lapor | Detail |
+| ----------- | ----------- | -------- |
+| ![transaksi](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_3.png) | ![lapor](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_4.png) | ![detail](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_7.png) |
+
+| Profil | Peta | Tentang Gampah |
+| ----------- | ----------- | -------- |
+| ![profil](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_8.png) | ![peta](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_4.png) | ![tentang](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_5.png) |
+
+## Creator
+
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/bintaaaa"><img src="https://avatars.githubusercontent.com/u/79687063?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Bijantyum</b></sub></a><br /><a href="https://github.com/all-contributors/cli/commits?author=bintaaaa" title="Code">💻</a> <a href="https://github.com/all-contributors/cli/commits?author=bintaaaa" title="Documentation">📖</a> <a href="https://github.com/all-contributors/cli/commits?author=bintaaaa" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/seikosantana"><img src="https://avatars.githubusercontent.com/u/35630407?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Seiko Santana</b></sub></a><br /><a href="https://github.com/all-contributors/cli/commits?author=kentcdodds" title="Documentation">📖</a> <a href="https://github.com/all-contributors/cli/commits?author=kentcdodds" title="Code">💻</a></td>
+  </tr>
+</table>
+<!-- markdownlint-restore -->
 
 ## Didukung Oleh
 
