@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
         title: "Gampah",
         theme: ThemeData(textTheme: appTextTheme),
         home: GetStartedPage(),
+        debugShowCheckedModeBanner: false,
         initialRoute: SplashPage.routeName,
         navigatorKey: navigatorKey,
         routes: {
