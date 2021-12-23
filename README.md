@@ -16,6 +16,7 @@
 
 - [Gampah](#gampah)
   - [Daftar Isi](#daftar-isi)
+  - [Cobain Gampah](#cobain-gampah)
   - [Apa itu Gampah?](#apa-itu-gampah)
     - [Konsep Gampah](#konsep-gampah)
       - [Bagaimana membersihkan sampah di setiap tempat yang kita lihat? Bagaimana mungkin?](#bagaimana-membersihkan-sampah-di-setiap-tempat-yang-kita-lihat-bagaimana-mungkin)
@@ -33,6 +34,12 @@
   - [Screenshot Tampilan Aplikasi](#screenshot-tampilan-aplikasi)
   - [Creator](#creator)
   - [Didukung Oleh](#didukung-oleh)
+
+## Cobain Gampah
+
+Kalo kamu mau cobain aplikasi Gampah, bukan mau liat source atau yang lainnya, silahkan ke [website gampah](http://shamo.tanpabatasgroup.com/), atau...
+
+<a style="display: inline-block; background: #eb427e; padding: 8px 16px; border-radius: 24px" href="https://shamo.tanpabatasgroup.com/gampah-1.0.apk"><span color="white">Download Gampah</span></a>
 
 ## Apa itu Gampah?
 
