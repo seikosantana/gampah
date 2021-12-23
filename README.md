@@ -39,6 +39,9 @@
 
 Kalo kamu mau cobain aplikasi Gampah, bukan mau liat source atau yang lainnya, silahkan ke [website Gampah](http://shamo.tanpabatasgroup.com/), atau [download Gampah](https://shamo.tanpabatasgroup.com/gampah-1.0.apk).
 
+**_Disclaimer_**  
+_Tidak ada afiliasi ataupun sponsorship pada link terkait. Link tersebut hanya menjadi tempat hosting halaman download dan file aplikasi Gampah._
+
 ## Apa itu Gampah?
 
 Gampah adalah aplikasi digititalisasi pelaporan sampah sembarangan berbasis Android. Gampah membuat gerakan untuk mengumpulkan informasi titik-titik penumpakan sampah di daerah yang kurang diperhatikan dan mengadakan penjemputan dengan sistematis.
