@@ -148,7 +148,7 @@ flutter run
 
 | Profil | Peta | Tentang Gampah |
 | ----------- | ----------- | -------- |
-| ![profil](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_8.png) | ![peta](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_4.png) | ![tentang](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_5.png) |
+| ![profil](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_8.png) | ![peta](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_9.png) | ![tentang](https://raw.githubusercontent.com/seikosantana/gampah/integration-with-api/screenshot/SS_gampah_5.png) |
 
 ## Creator
 
