@@ -155,8 +155,8 @@ flutter run
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/bintaaaa"><img src="https://avatars.githubusercontent.com/u/79687063?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Bijantyum</b></sub></a><br /><a href="https://github.com/all-contributors/cli/commits?author=bintaaaa" title="Code">💻</a> <a href="https://github.com/all-contributors/cli/commits?author=bintaaaa" title="Documentation">📖</a> <a href="https://github.com/all-contributors/cli/commits?author=bintaaaa" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/seikosantana"><img src="https://avatars.githubusercontent.com/u/35630407?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Seiko Santana</b></sub></a><br /><a href="https://github.com/all-contributors/cli/commits?author=kentcdodds" title="Documentation">📖</a> <a href="https://github.com/all-contributors/cli/commits?author=kentcdodds" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/bintaaaa"><img src="https://avatars.githubusercontent.com/u/79687063?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Bijantyum</b></sub></a><br /><a href="https://github.com/seikosantana/gampah/commits?author=bintaaaa" title="Code">💻</a> <a href="https://github.com/seikosantana/gampah/commits?author=bintaaaa" title="Documentation">📖</a> <a href="https://github.com/seikosantana/gampah/commits?author=bintaaaa" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/seikosantana"><img src="https://avatars.githubusercontent.com/u/35630407?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Seiko Santana</b></sub></a><br /><a href="https://github.com/seikosantana/gampah/commits?author=seikosantana" title="Documentation">📖</a> <a href="https://github.com/seikosantana/seikosantana/commits?author=seikosantana" title="Code">💻</a></td>
   </tr>
 </table>
 <!-- markdownlint-restore -->
