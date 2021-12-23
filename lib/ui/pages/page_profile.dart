@@ -162,78 +162,76 @@ class PageProfileState extends State<PageProfile> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
-            child: Expanded(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 16,
-                  ),
-                  _rewardContribution(user!.roles, user.id),
-                  SizedBox(height: 16),
-                  _profile(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-                    child: Column(
-                      children: [
-                        GampahTextField(
-                          labelText: "Nama kamu",
-                          prefix: Icon(
-                            Icons.person_rounded,
-                            color: softGreyColor,
-                          ),
-                          hintText:
-                              "${user.name[0].toUpperCase()}${user.name.substring(1)}",
-                          isEnable: false,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 16,
+                ),
+                _rewardContribution(user!.roles, user.id),
+                SizedBox(height: 16),
+                _profile(),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+                  child: Column(
+                    children: [
+                      GampahTextField(
+                        labelText: "Nama kamu",
+                        prefix: Icon(
+                          Icons.person_rounded,
+                          color: softGreyColor,
                         ),
-                        SizedBox(
-                          height: 16,
+                        hintText:
+                            "${user.name[0].toUpperCase()}${user.name.substring(1)}",
+                        isEnable: false,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      GampahTextField(
+                        labelText: "Nomor HP",
+                        prefix: Text("+62"),
+                        hintText: user.phone,
+                        isEnable: false,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      GampahTextField(
+                        labelText: "Email kamu",
+                        prefix: Icon(
+                          Icons.mail,
+                          color: softGreyColor,
                         ),
-                        GampahTextField(
-                          labelText: "Nomor HP",
-                          prefix: Text("+62"),
-                          hintText: user.phone,
-                          isEnable: false,
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        GampahTextField(
-                          labelText: "Email kamu",
-                          prefix: Icon(
-                            Icons.mail,
-                            color: softGreyColor,
-                          ),
-                          hintText: user.email,
-                          isEnable: false,
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: isLoading
-                                  ? _btnLoading()
-                                  : ElevatedButton(
-                                      onPressed: handleLogout,
-                                      child: Text(
-                                        "Keluar",
-                                        style: appTextTheme.button,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 14),
-                                        primary: softGreenColor,
-                                      ),
+                        hintText: user.email,
+                        isEnable: false,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: isLoading
+                                ? _btnLoading()
+                                : ElevatedButton(
+                                    onPressed: handleLogout,
+                                    child: Text(
+                                      "Keluar",
+                                      style: appTextTheme.button,
                                     ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 14),
+                                      primary: softGreenColor,
+                                    ),
+                                  ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
