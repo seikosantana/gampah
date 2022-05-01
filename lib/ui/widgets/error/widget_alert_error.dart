@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_if_null_operators
+
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
@@ -6,7 +8,9 @@ import 'package:lottie/lottie.dart';
 class AlertError extends StatelessWidget {
   final String title;
   final String lottie;
-  const AlertError({Key? key, required this.title, required this.lottie})
+  final Function()? ontap;
+  const AlertError(
+      {Key? key, required this.title, required this.lottie, this.ontap})
       : super(key: key);
 
   @override
@@ -27,9 +31,11 @@ class AlertError extends StatelessWidget {
               height: 24,
             ),
             TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: ontap == null
+                  ? () {
+                      Navigator.pop(context);
+                    }
+                  : ontap,
               child: Center(
                 child: Wrap(
                   children: [

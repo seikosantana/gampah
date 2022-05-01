@@ -1,10 +1,16 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
+import 'package:gampah_app/models/model_user.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/transactions_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
-import 'package:gampah_app/ui/pages/page_get_started.dart';
 import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_register.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = "/login";
@@ -14,10 +20,53 @@ class LoginPage extends StatefulWidget {
   }
 }
 
-//TODO: Apply colors to icons and text
 class LoginPageState extends State<LoginPage> {
+  bool isNotHold = true;
+  bool isLoading = false;
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleLogin() async {
+      setState(() {
+        isLoading = true;
+      });
+      bool result = await authProvider.login(
+          emailController.text, passwordController.text);
+      UserModel? user = authProvider.getUser;
+
+      if (result) {
+        var transactionProviders =
+            Provider.of<TransactionProvider>(context, listen: false);
+        await transactionProviders.fetchAllData();
+        if (user!.roles == 'DRIVER') {
+          transactionProviders.startMonitorTransaction();
+          // return Navigator.pushReplacementNamed(
+          //     context, TransactionPage.routeName);
+        }
+        return Navigator.pushReplacementNamed(context, HomePage.routeName);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: redColor,
+            content: Text(
+              'Gagal Login!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    Widget _btnLoading() {
+      return BtnLoading();
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -51,6 +100,7 @@ class LoginPageState extends State<LoginPage> {
                   color: softGreyColor,
                 ),
                 labelText: "Email kamu",
+                controller: emailController,
               ),
               SizedBox(
                 height: 24,
@@ -59,12 +109,19 @@ class LoginPageState extends State<LoginPage> {
                 labelText: "Kata sandi",
                 prefix: Icon(Icons.lock, color: softGreyColor),
                 postAction: IconButton(
+                  splashColor: Colors.transparent,
                   icon: Icon(
-                    Icons.visibility_off,
-                    color: softGreyColor,
+                    isNotHold ? Icons.visibility_off : Icons.visibility,
+                    color: isNotHold ? softGreyColor : darkGreenColor,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      isNotHold = !isNotHold;
+                    });
+                  },
                 ),
+                controller: passwordController,
+                maskText: isNotHold,
               ),
               SizedBox(
                 height: 24,
@@ -72,21 +129,19 @@ class LoginPageState extends State<LoginPage> {
               Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton(
-                      // TODO: Replace with Gampah-themed button
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, HomePage.routeName);
-                      },
-                      child: Text(
-                        "Masuk",
-                        style: appTextTheme.button,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 14),
-                        primary: softGreenColor,
-                      ),
-                    ),
+                    child: isLoading == true
+                        ? _btnLoading()
+                        : ElevatedButton(
+                            onPressed: handleLogin,
+                            child: Text(
+                              "Masuk",
+                              style: appTextTheme.button,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 14),
+                              primary: softGreenColor,
+                            ),
+                          ),
                   )
                 ],
               ),

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gampah_app/style/color.dart';
@@ -7,9 +9,18 @@ class GampahTextField extends StatefulWidget {
   Widget? prefix;
   Widget? postAction;
   bool? maskText;
-
+  bool? isEnable;
+  String? hintText;
+  TextEditingController? controller;
   GampahTextField(
-      {this.labelText, this.prefix, this.postAction, this.maskText, Key? key})
+      {this.labelText,
+      this.prefix,
+      this.postAction,
+      this.maskText,
+      this.isEnable,
+      this.hintText,
+      this.controller,
+      Key? key})
       : super(key: key);
 
   @override
@@ -44,9 +55,12 @@ class _GampahTextFieldState extends State<GampahTextField> {
                 Expanded(
                   child: TextFormField(
                     obscureText: widget.maskText ?? false,
+                    enabled: widget.isEnable,
                     decoration: InputDecoration(
                       border: InputBorder.none,
+                      hintText: widget.hintText,
                     ),
+                    controller: widget.controller,
                   ),
                 ),
                 if (widget.postAction != null)

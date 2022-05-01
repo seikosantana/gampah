@@ -3,9 +3,9 @@ import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 
 class CardActivity extends StatelessWidget {
-  final String skala;
+  final String value;
   final String title;
-  const CardActivity({Key? key, required this.skala, required this.title})
+  const CardActivity({Key? key, required this.value, required this.title})
       : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class CardActivity extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: darkGreenColor, width: 2),
+          side: BorderSide(color: darkGreenColor, width: 1),
         ),
         child: Padding(
           padding: EdgeInsets.all(8),
@@ -34,7 +34,7 @@ class CardActivity extends StatelessWidget {
                     color: darkGreenColor),
                 child: Center(
                   child: Text(
-                    skala,
+                    value,
                     style: appTextTheme.subtitle1!.copyWith(
                       color: whiteColor,
                     ),

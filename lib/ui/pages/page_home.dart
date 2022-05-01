@@ -1,4 +1,10 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:gampah_app/helper/helper_notification.dart';
+import 'package:gampah_app/models/model_user.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
+import 'package:gampah_app/provider/stats_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
 import 'package:gampah_app/ui/pages/page_about.dart';
@@ -9,6 +15,8 @@ import 'package:gampah_app/ui/pages/page_tutorial.dart';
 import 'package:gampah_app/ui/widgets/widget_card_about.dart';
 import 'package:gampah_app/ui/widgets/widget_card_activity.dart';
 import 'package:gampah_app/ui/widgets/widget_clip_path.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,6 +27,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
   int currentIndex = 0;
   Widget _clipPath(BuildContext context) {
     return ClipPath(
@@ -31,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _header() {
+  Widget _header(String name) {
     return Container(
       margin: EdgeInsets.fromLTRB(24, 24, 24, 0),
       child: Row(
@@ -42,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hai, Bijantium",
+                  "Hai, $name",
                   style: appTextTheme.headline5!.copyWith(color: whiteColor),
                 ),
                 Text(
@@ -84,6 +93,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  static var compactFormat = NumberFormat.compact(locale: "id")
+    ..maximumFractionDigits = 1
+    ..minimumIntegerDigits = 1;
+
   Widget _cardActivity(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -91,9 +104,53 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           children: [
-            CardActivity(skala: "12", title: "Sampah\nterbuang"),
-            CardActivity(skala: "80K", title: "Orang\nberkontribusi"),
-            CardActivity(skala: "200", title: "Driver\nyang sigap"),
+            Consumer<StatsProvider>(
+              builder: (context, value, child) {
+                return FutureBuilder(
+                  builder: (context, snapshot) {
+                    Widget child;
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      if (!snapshot.hasError) {
+                        child = Row(
+                          children: [
+                            CardActivity(
+                                value: compactFormat.format(value.pickUpCount),
+                                title: "Sampah\nterbuang"),
+                            CardActivity(
+                                value: compactFormat
+                                    .format(value.contributorsCount),
+                                title: "Orang\nberkontribusi"),
+                            CardActivity(
+                                value: compactFormat.format(value.driverCount),
+                                title: "Driver\nyang sigap"),
+                          ],
+                        );
+                      } else {
+                        child = Text(
+                          value.errorMessage!,
+                          style: appTextTheme.bodyText1,
+                        );
+                      }
+                    } else {
+                      child = Container(
+                        margin: EdgeInsets.symmetric(horizontal: 150),
+                        child: CircularProgressIndicator(
+                          color: darkGreenColor,
+                        ),
+                      );
+                    }
+                    return AnimatedSwitcher(
+                      duration: Duration(seconds: 1),
+                      child: child,
+                    );
+                  },
+                  future: value.dataLoad,
+                );
+              },
+            ),
+            // CardActivity(skala: "12", title: "Sampah\nterbuang"),
+            // CardActivity(skala: "80K", title: "Orang\nberkontribusi"),
+            // CardActivity(skala: "200", title: "Driver\nyang sigap"),
           ],
         ),
       ),
@@ -213,9 +270,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel? user = authProvider.getUser;
     return Scaffold(
       extendBody: true,
-      floatingActionButton: _floatingActionButton(),
+      floatingActionButton:
+          user!.roles == 'DRIVER' ? Container() : _floatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _bottomNavigation(),
       body: SafeArea(
@@ -225,7 +285,12 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                children: [_clipPath(context), _header(), _titleActivity()],
+                children: [
+                  _clipPath(context),
+                  _header(
+                      "${user.name[0].toUpperCase()}${user.name.substring(1)}"),
+                  _titleActivity()
+                ],
               ),
               _cardActivity(context),
               _aboutGampah(context)
@@ -234,5 +299,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper.configureSelectNotificationSubject();
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 }
