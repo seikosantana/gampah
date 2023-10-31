@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
-import 'package:gampah_app/ui/pages/page_home.dart';
 import 'package:gampah_app/ui/pages/page_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BtnNext extends StatefulWidget {
   const BtnNext({Key? key}) : super(key: key);
@@ -15,8 +15,10 @@ class _BtnNextState extends State<BtnNext> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
         Navigator.pushReplacementNamed(context, LoginPage.routeName);
+        var prefs = await SharedPreferences.getInstance();
+        prefs.setBool("is_first", false);
         setState(() {
           isTap = !isTap;
         });

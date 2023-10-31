@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
-import 'package:gampah_app/ui/pages/page_transaction.dart';
 import 'package:gampah_app/ui/pages/page_transaction_detail.dart';
 
 class CardTransaction extends StatelessWidget {
@@ -11,6 +10,7 @@ class CardTransaction extends StatelessWidget {
   final Color color;
   final String address;
   final Function()? onTap;
+  final Object? argument;
   const CardTransaction({
     Key? key,
     required this.date,
@@ -18,6 +18,7 @@ class CardTransaction extends StatelessWidget {
     required this.status,
     required this.color,
     required this.address,
+    this.argument,
     this.onTap,
   }) : super(key: key);
 
@@ -25,7 +26,8 @@ class CardTransaction extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, TransactionDetailPage.routeName);
+        Navigator.pushNamed(context, TransactionDetailPage.routeName,
+            arguments: argument);
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 24, vertical: 2),

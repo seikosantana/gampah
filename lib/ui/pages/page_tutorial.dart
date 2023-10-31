@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:gampah_app/ui/widgets/widget_card_tutorial.dart';
 import 'package:gampah_app/ui/widgets/widget_toolbar.dart';

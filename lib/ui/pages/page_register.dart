@@ -1,24 +1,71 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
+import 'package:gampah_app/provider/auth_provider.dart';
 import 'package:gampah_app/style/color.dart';
 import 'package:gampah_app/style/text_theme.dart';
+import 'package:gampah_app/ui/error/success_register.dart';
+import 'package:gampah_app/ui/widgets/btn_loading.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_drop_down.dart';
 import 'package:gampah_app/ui/widgets/form_controls/gampah_text_field.dart';
 import 'package:gampah_app/helper_functions.dart/extensions.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   static const routeName = "/register";
+
+  const RegisterPage({Key? key}) : super(key: key);
   @override
   RegisterPageState createState() {
     return RegisterPageState();
   }
 }
 
-//TODO: Apply colors to icons and text
 class RegisterPageState extends State<RegisterPage> {
-  String registerAs = "pengguna";
+  String registerAs = "PENGGUNA";
+  bool isNotHold = true;
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController phoneController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+  bool isLoading = false;
+  Widget _btnLoading() {
+    return BtnLoading();
+  }
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    handleRegister() async {
+      setState(() {
+        isLoading = true;
+      });
+      bool result = await authProvider.register(
+        nameController.text,
+        phoneController.text,
+        emailController.text,
+        registerAs,
+        passwordController.text,
+      );
+      if (result) {
+        return Navigator.pushReplacementNamed(
+            context, RegisterSuccess.routeName);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: redColor,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -47,16 +94,17 @@ class RegisterPageState extends State<RegisterPage> {
                     Icons.person,
                     color: softGreyColor,
                   ),
+                  controller: nameController,
                 ),
                 SizedBox(
                   height: 24,
                 ),
                 GampahTextField(
-                  // TODO: Allow only number input
                   labelText: "Nomor HP",
                   prefix: Container(
                     child: Text("+62"),
                   ),
+                  controller: phoneController,
                 ),
                 SizedBox(
                   height: 24,
@@ -67,12 +115,13 @@ class RegisterPageState extends State<RegisterPage> {
                     Icons.mail,
                     color: softGreyColor,
                   ),
+                  controller: emailController,
                 ),
                 SizedBox(
                   height: 24,
                 ),
                 GampahDropDown(
-                  items: ["pengguna", "driver"]
+                  items: ["PENGGUNA", "DRIVER"]
                       .map((e) => DropdownMenuItem(
                             child: Text(e.toCapitalized()),
                             value: e,
@@ -94,20 +143,24 @@ class RegisterPageState extends State<RegisterPage> {
                   height: 24,
                 ),
                 GampahTextField(
-                  //TODO: Implement visibility toggle
                   labelText: "Password",
-                  maskText: true,
+                  maskText: isNotHold,
                   prefix: Icon(
                     Icons.lock,
                     color: softGreyColor,
                   ),
                   postAction: IconButton(
                     icon: Icon(
-                      Icons.visibility_off,
-                      color: softGreyColor,
+                      isNotHold ? Icons.visibility_off : Icons.visibility,
+                      color: isNotHold ? softGreyColor : darkGreenColor,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        isNotHold = !isNotHold;
+                      });
+                    },
                   ),
+                  controller: passwordController,
                 ),
                 SizedBox(
                   height: 24,
@@ -115,18 +168,19 @@ class RegisterPageState extends State<RegisterPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: ElevatedButton(
-                        // TODO: Replace with Gampah-themed button
-                        onPressed: () {},
-                        child: Text(
-                          "Daftar",
-                          style: appTextTheme.button,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 14),
-                          primary: softGreenColor,
-                        ),
-                      ),
+                      child: isLoading
+                          ? _btnLoading()
+                          : ElevatedButton(
+                              onPressed: handleRegister,
+                              child: Text(
+                                "Daftar",
+                                style: appTextTheme.button,
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(vertical: 14),
+                                primary: softGreenColor,
+                              ),
+                            ),
                     )
                   ],
                 ),
@@ -142,7 +196,7 @@ class RegisterPageState extends State<RegisterPage> {
                           text: "Sudah punya akun? ",
                         ),
                         TextSpan(
-                          text: " Yuk daftar",
+                          text: " Yuk login",
                           style: appTextTheme.bodyText2!
                               .copyWith(color: softBlueColor),
                         ),
